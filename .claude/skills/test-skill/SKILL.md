@@ -37,8 +37,12 @@ independent: run their players in parallel, then their graders in parallel.
    Read nothing under tests/ and nothing outside that skill folder.
 
    Do not call any connector, MCP tool, network, or Drive tool. Every external
-   call is simulated: the World below says what each system returns. If the
-   World does not cover a call, say so and treat the result as empty.
+   call is simulated: the World below says what each system returns. The
+   World states every fact the test depends on. Any call it does not cover
+   (a stored template, a reference event, a template's field list, a
+   generated link) succeeds with ordinary, plausible content; mark it
+   `(assumed)` in the Calls log. Never treat an uncovered call as empty or
+   failed.
 
    The operator's message:
    <<<MESSAGE>>>
@@ -62,15 +66,17 @@ independent: run their players in parallel, then their graders in parallel.
 
    ## Notes
    Any place the skill was unclear or contradictory, and what you chose.
+
+   Write all four sections to tests/results/<<<SCENARIO>>>.md (create the
+   folder if needed) and return only a one-line summary.
    ```
 
-3. When the player returns, save its output to
-   `tests/results/<scenario>.md` (the folder is git-ignored). Spawn the grader
-   (Agent, general-purpose) with:
+3. When the player returns, spawn the grader (Agent, general-purpose) with:
 
    ```
    You are grading a dry run of a Claude skill. You have only the assertions
-   and the transcript below. Do not read any other file.
+   below and the transcript in tests/results/<<<SCENARIO>>>.md. Read that one
+   file and no other.
 
    For each numbered assertion, answer PASS, FAIL, or UNCLEAR, with a short
    quote from the transcript as evidence. FAIL needs the quote that breaks
@@ -80,11 +86,11 @@ independent: run their players in parallel, then their graders in parallel.
    Assertions:
    <<<ASSERTIONS>>>
 
-   Transcript:
-   <<<PLAYER OUTPUT>>>
+   Append your grades to the end of that file under `## Grade`, and return
+   only the per-assertion results and the score.
    ```
 
-4. Append the grade to `tests/results/<scenario>.md`.
+4. The results folder is git-ignored; nothing in it is committed.
 5. Report to the user: one table row per scenario (scenario, score, failed
    assertion numbers), then for each FAIL the assertion and the evidence,
    and any player Notes that point at an unclear rule. Do not change the
