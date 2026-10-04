@@ -16,7 +16,7 @@ the flyer is a print design, not a social one.
    derives from the copy; do not write new event facts. Short, one link,
    plain language. No hashtags.
 2. Create the Constant Contact social draft:
-   `createSocialPostUsingPOST`, `status: DRAFT`, one `profile_posts` entry:
+   `create_social_post`, `status: DRAFT`, one `profile_posts` entry:
 
    ```
    name:          <Event Name> - YYYY-MM-DD - Facebook <n>
@@ -39,7 +39,7 @@ the flyer is a print design, not a social one.
 - `images`, when a future post uses one, must be a list of objects with a
   `url` key, not a list of strings, and each url must be publicly reachable.
 - A `DRAFT` carries no date. The system never sets `SCHEDULED`.
-- `updateSocialPostUsingPUT` edits an existing campaign by `campaign_id`.
+- `update_social_post` edits an existing campaign by `campaign_id`.
   Revise in place rather than creating a second campaign.
 
 ## Checks

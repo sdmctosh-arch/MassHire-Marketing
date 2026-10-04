@@ -130,11 +130,17 @@ Eventbrite fills the `text` form from `html`. Verified on a draft event,
 
 ## Tags
 
-Default tags on every event: `employment`, `jobs`, `jobfair`, `hiring`.
-Eventbrite allows 10 tags. Add up to 6 more for this event from its kind,
-topic, sectors, and town (for example `webinar`, `manufacturing`,
-`southbridge`), skipping any that repeat a default. The tag list goes in the
-review packet.
+Default tags by kind:
+
+| Kind | Default tags |
+|---|---|
+| Job fair, recruitment, hiring | `employment`, `jobs`, `jobfair`, `hiring` |
+| Webinar | `employment`, `careers`, `webinar`, `online` |
+| Workshop | `employment`, `careers`, `workshop`, `jobseekers` |
+
+Eventbrite allows 10 tags. Add up to 6 more for this event from its topic,
+sectors, and town (for example `resume`, `manufacturing`, `southbridge`),
+skipping any that repeat a default. The tag list goes in the review packet.
 
 - [constraint: no API write] The public API v3 has no endpoint that writes
   tags (`event.tags` is rejected; `/events/<id>/tags/` does not exist —

@@ -41,3 +41,5 @@ the build order, and that cost is not invented.
    set or planned anywhere.
 9. No question is asked (the form link is the only Required fact, and it was
    given).
+10. The Directorist listing has a category term and no location term (no
+    source gives a location), and this does not block publishing it.

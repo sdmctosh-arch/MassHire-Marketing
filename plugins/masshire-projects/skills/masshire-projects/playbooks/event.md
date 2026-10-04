@@ -57,7 +57,7 @@ question), **Request** (from the request, else the fallback shown),
 | `jobseeker_short_link` | **Derived**: `https://masshirecentralcc.com/<jobseeker_slug>`. The redirect is created at execute. |
 | `employer_link` | **Generated** by the Zoho automation in the draft pass. |
 | `employer_short_link` | **Derived**: `https://masshirecentralcc.com/<employer_slug>`. |
-| Tags | **Derived**: 4 fixed + up to 6 from kind, topic, sector, town; 10 at most. See `eventbrite-event`. |
+| Tags | **Derived**: 4 defaults by kind + up to 6 from topic, sector, town; 10 at most. See `eventbrite-event`. |
 | Campaign names | **Derived**: `<Event Name> - YYYY-MM-DD - Email <n>` / `- Facebook <n>`. |
 | Flyer design name | **Derived**: `<Event Name> Flyer - YYYY-MM-DD`. |
 
@@ -84,7 +84,7 @@ nothing else: no draft carries a date, time, or resend setting.
 | 2 | description-copy | Copy rules in SKILL.md | 1 | all facts |
 | 3 | eventbrite | `eventbrite-event` | 2 | event_date, start_time, end_time, venue, address |
 | 4 | zoho-job-fair (if employer registration) | `zoho-job-fair` | 1 | event_name, event_date |
-| 5 | short-links | `vanity-redirect` | 3; 4 if in scope | jobseeker_link, employer_link |
+| 5 | short-links | `vanity-redirect` | 1 | jobseeker_link, employer_link |
 | 6 | flyer-qr (if flyer) | `flyer-from-template`, QR section | 3 | jobseeker_link |
 | 7 | flyer (if flyer) | `flyer-from-template` | 2, 5, 6 | event_date, start_time, end_time, venue, address, jobseeker_short_link |
 | 8 | flyer-export (if flyer) | `flyer-from-template`, export section | 7 | — |

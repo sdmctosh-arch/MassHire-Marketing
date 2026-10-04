@@ -38,6 +38,14 @@ mark the others `blocked` with `blocked_by: <fact>`, and put one question at
 the top of the review packet. When the answer arrives, fill the value, draft
 the blocked tasks, and send an updated review packet.
 
+The copy is the exception: `description-copy` uses every fact, but it is
+drafted anyway, with a marked gap where the missing fact goes:
+`[end time — awaiting your answer]`. Everything that takes from the copy
+without using the missing fact can then be drafted. The gap is not an
+invented fact; filling the value marks the copy stale, and the redraft
+replaces the gap. A gap never reaches a public item: any published item or
+email draft that still contains `awaiting your answer` fails its checks.
+
 Never invent a fact. A default is not an invention: it is a stated rule, and
 every default and derived value used is listed in the review packet as an
 assumption.
@@ -114,7 +122,7 @@ the connectors that playbook's in-scope tasks need.
 | Google Drive | every project — all state, plus `eventbrite-token.txt` | reading `index.md` (intake step 1) |
 | Novamira | `wordpress-event`, `directorist-listing`, `training-post`, `vanity-redirect`, `existing-check` | `discover-abilities` |
 | Eventbrite API v3 | `eventbrite-event`, `existing-check` | `GET https://www.eventbriteapi.com/v3/users/me/` with the Drive token |
-| Constant Contact | `constant-contact-email`, `facebook-post-draft` | `retrieveEmailAddresses` |
+| Constant Contact | `constant-contact-email`, `facebook-post-draft` | `retrieve_email_addresses` |
 | Canva | `flyer-from-template` | `search-brand-templates` — the template the flyer needs is in the result |
 | Zoho CRM | `zoho-job-fair` — job fairs only | `getModules` |
 
@@ -154,6 +162,19 @@ MassHire Projects/                 id 1AczGC82kIJlLGGUHy59hgJ9Emm74Nkr-
 
 Slug format: `YYYY-MM-DD-kebab-case-name`. The date is the event date (for a
 training: the date the project starts).
+
+### index.md
+
+One table, one row per project, newest first:
+
+```
+| slug | type | event_date | status | folder_id | notes |
+```
+
+`type` is the playbook and, for events, the kind (`event/job-fair`,
+`training`). `status` mirrors the project file's status and is updated in
+the same write whenever that status changes. `notes` holds an old slug after
+a rename, and nothing else routine.
 
 ### Finding a project
 
@@ -221,7 +242,18 @@ each other connector's tools in one call when its first task starts.
 
 ## The project file
 
-- Only the main thread writes to it. Update it after each task, not at the end.
+- Only the main thread writes to it. Every write costs three Drive calls
+  (create, verify, trash), so it is written at checkpoints, not after every
+  task:
+  1. after intake (fields, task list, preflight);
+  2. once after the draft pass, with every task's status and output, just
+     before the review packet;
+  3. after each execute action, so a failure part-way is on record;
+  4. at handoff, and whenever the operator's message changes a value.
+
+  Between checkpoints, keep the changes in the turn. If a session ends
+  between checkpoints, the next one finds the drafts already made by the
+  "search before you create" rule, so nothing is created twice.
 - Task statuses: `todo`, `blocked` (name the missing fact in `blocked_by`),
   `draft`, `approved`, `done`, `skipped`, `stale`.
 - Project statuses: `intake`, `review`, `executing`, `handoff`, `closed`.
@@ -242,7 +274,8 @@ each other connector's tools in one call when its first task starts.
 
 The approved copy is written once, in `descriptions/<project>.html`, by the
 `description-copy` task. Every channel takes from it. Never write new event
-facts for a channel. Do not promise an outcome a third party controls: write
+facts for a channel. A missing Required fact leaves a marked gap in the copy
+(see Required facts and missing facts), never a guess. Do not promise an outcome a third party controls: write
 what may happen.
 
 ## Concurrency

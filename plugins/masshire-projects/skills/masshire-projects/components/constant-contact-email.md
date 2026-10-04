@@ -23,7 +23,7 @@ Real and current; use them directly.
 - From address: `info@masshirecentralcc.ccsend.com` (the verified Constant
   Contact sending address)
 - Reply-to address: `info@masshirecentralcc.com`
-- Compliance address: fetch with `getPhysicalAddress` and pass it as
+- Compliance address: fetch with `get_physical_address` and pass it as
   `physical_address_in_footer`.
 
 ## The base HTML
@@ -33,7 +33,7 @@ branded HTML is stored in Drive:
 `MassHire Projects/masshire-projects/templates/jobseeker-email.html`.
 
 Read it, substitute the tokens, post the result. Never let the connector
-invent its own layout: the `createEmailCampaign` tool description pushes for
+invent its own layout: the `create_email_campaign` tool description pushes for
 generated HTML with its own design system. Ignore that. Brand consistency
 comes from the stored file and only from it.
 
@@ -132,7 +132,7 @@ details box.
 1. Read the base HTML from Drive.
 2. For each role in the playbook's count: write the content by the rules
    above, and substitute every token, `{{BUTTON_LINK}}` in both buttons.
-3. `createEmailCampaignUsingPOST` with `from_name`, `from_email`,
+3. `create_email_campaign` with `from_name`, `from_email`,
    `reply_to_email`, `subject`, `preheader`, `physical_address_in_footer`,
    and the substituted `html_content`. No separate approval: the review
    packet is the approval.
@@ -164,7 +164,7 @@ Unique across the account, at most 80 characters.
 ## Revising a draft
 
 - When a value a draft uses changes, update the draft in place with
-  `updateEmailCampaignActivityUsingPUT`. It requires `from_name`,
+  `update_email_campaign_activity`. It requires `from_name`,
   `from_email`, `reply_to_email`, and `subject` on every call, even when only
   the HTML changes. Never create a second campaign.
 - Frozen-draft rule: once the operator edits a campaign by hand in Constant
@@ -182,12 +182,12 @@ update the draft in place (frozen-draft rule applies).
 
 ## Tool facts
 
-- Load in one call: `createEmailCampaignUsingPOST`,
-  `updateEmailCampaignActivityUsingPUT`, `get_campaign_html_preview`,
-  `renameEmailCampaignUsingPATCH`, `getPhysicalAddress`.
+- Load in one call: `create_email_campaign`,
+  `update_email_campaign_activity`, `get_campaign_html_preview`,
+  `rename_email_campaign`, `get_physical_address`.
 - No tool lists campaigns, reads saved Constant Contact templates, attaches a
   list, sets a resend, or schedules a send.
-- `createEmailCampaign` refuses a duplicate `name`. That refusal is the only
+- `create_email_campaign` refuses a duplicate `name`. That refusal is the only
   collision guard, and it is the duplicate check after an unreadable create:
   retry with the same name; success means the first call did not land, a
   duplicate-name error means it did. Find that campaign and record its ids.

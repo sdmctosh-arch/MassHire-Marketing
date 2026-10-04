@@ -8,8 +8,9 @@ with a live system is caught before anything is drafted.
 1. Eventbrite: list the organization's events
    (`GET /organizations/1772914159203/events/?status=draft,live&order_by=start_desc`)
    and look for one with a similar name or the same date.
-2. WordPress: search posts of type `event` for a similar title, and read the
-   `date` field of any match.
+2. WordPress (`novamira/execute-php`, `get_posts` with `post_status` any, so
+   drafts count): search posts of type `event` for a similar title, and read
+   the `date` field of any match.
 3. Zoho (job fairs only): search `Job_Fairs` on name and on `Event_Date`.
 4. For each match, compare date, start and end time, and venue with the
    request.

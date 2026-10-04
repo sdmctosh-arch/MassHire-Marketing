@@ -67,7 +67,8 @@ filling. Never hard-code field names from this table into a call.
      say the registration page will be updated as employers confirm.
    - Job Listings: `event_type`, `company`, `job_name` from the event name;
      the position rows from `positions`; `partner_logo` from the Canva asset
-     lookup.
+     lookup. Send an empty string for every field of an unused position row,
+     then check the thumbnail for a leftover label or an empty box.
 3. Call `autofill-design` once, with every value, and the title
    `<Event Name> Flyer - YYYY-MM-DD`. Every call creates a new design, and any
    field left out comes back blank. Autofill once, with everything.

@@ -1,5 +1,29 @@
 # Changelog
 
+## masshire-projects 1.3.0 — 2026-10-04
+
+Fixes from the second behavior-test run.
+
+- A missing Required fact no longer stops the copy: description-copy is
+  drafted with a marked gap (`[end time — awaiting your answer]`), and a gap
+  in a published item or email draft fails its checks.
+- `index.md` columns defined: slug, type, event_date, status, folder_id,
+  notes; status mirrors the project file.
+- Constant Contact tool names match the connector (`create_email_campaign`,
+  `update_email_campaign_activity`, `rename_email_campaign`,
+  `get_physical_address`, `retrieve_email_addresses`, `create_social_post`,
+  `update_social_post`).
+- `project.md` is written at four checkpoints (intake, end of draft pass,
+  each execute action, handoff) instead of after every task.
+- Training listings: no location term when no source gives one.
+- Eventbrite default tags by kind; webinars and workshops no longer get
+  `jobfair` and `hiring`.
+- short-links (slug choice) needs only existing-check; unused Job Listings
+  position rows are sent empty and checked; the WordPress existing-check
+  names its tool; times are stored as 24-hour HH:MM, America/New_York;
+  `online_platform` is in the values block.
+- Tests: missing-required-fact and training-path-b cover the new rules.
+
 ## masshire-projects 1.2.0 — 2026-10-04
 
 Fixes from the first behavior-test run.
