@@ -24,8 +24,8 @@ default, so the run must ask exactly one question and keep going.
    time. No other question appears.
 3. No end time or duration is invented or defaulted anywhere (no "3pm", no
    "one hour").
-4. Every task that uses `end_time` is marked `blocked` with
-   `blocked_by: end_time` (or equivalent naming the end time).
+4. Every task other than description-copy that uses `end_time` is marked
+   `blocked` with `blocked_by: end_time` (or equivalent naming the end time).
 5. The run does not stop at the missing fact: description-copy is drafted,
    with a marked gap for the end time (e.g. `[end time — awaiting your
    answer]`) rather than a guessed time.

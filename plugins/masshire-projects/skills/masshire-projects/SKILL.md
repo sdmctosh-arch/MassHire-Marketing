@@ -50,6 +50,11 @@ Never invent a fact. A default is not an invention: it is a stated rule, and
 every default and derived value used is listed in the review packet as an
 assumption.
 
+Every choice the operator might want to change is written as an assumption
+("Assumed: the Zoom link is sent after registration"), never as a request
+("tell me if…", "let me know whether…"). The only questions in a review
+packet are for missing Required facts.
+
 ### The review packet
 
 One message, in this order:

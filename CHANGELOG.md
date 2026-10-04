@@ -1,5 +1,12 @@
 # Changelog
 
+## masshire-projects 1.3.1 — 2026-10-04
+
+- Choices the operator might change are written as assumptions, never as
+  "tell me if…" requests; the only review-packet questions are for missing
+  Required facts.
+- Test wording: missing-required-fact assertion 4 exempts description-copy.
+
 ## masshire-projects 1.3.0 — 2026-10-04
 
 Fixes from the second behavior-test run.
