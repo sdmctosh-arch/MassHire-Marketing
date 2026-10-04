@@ -58,4 +58,5 @@ A complete job fair request. Nothing is missing, so nothing may be asked.
 20. The Eventbrite draft gets the stored order-form questions: cell phone
     (built-in, required), city or town, military service (Yes/No), full-time
     or part-time (Full time/Part time/Either), industries, and how they heard,
-    all required, on Registration only; none on the walk-in Admission ticket.
+    all required; plus the MassHire Job Seeker ID number, optional. All on
+    Registration only; none on the walk-in Admission ticket.

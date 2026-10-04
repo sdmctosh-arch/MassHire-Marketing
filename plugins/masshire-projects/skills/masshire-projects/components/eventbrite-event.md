@@ -77,11 +77,11 @@ Reference: Worcester Job Fair, event `2000642954934`.
 
 ## Order-form questions
 
-Six questions, a fixed set. Every question is required, and every question
-is shown on the `Registration` ticket (in the slot pattern, on every slot
-ticket). The walk-in `Admission` ticket gets none. Never delete a question.
-Question 6 measures the marketing channels; its options never change between
-events.
+Seven questions, a fixed set. Every question except question 7 is required.
+Every question is shown on the `Registration` ticket (in the slot pattern,
+on every slot ticket). The walk-in `Admission` ticket gets none. Never delete
+a question. Question 6 measures the marketing channels; its options never
+change between events.
 
 | # | Question text | Type | Options |
 |---|---|---|---|
@@ -91,8 +91,9 @@ events.
 | 4 | Are you looking for full-time or part-time work? | Single choice | Full time; Part time; Either |
 | 5 | What industries or fields of work are you interested in? | Multiple choice (check all that apply) | Not recorded yet: copy from the reference event |
 | 6 | How did you hear about this event? | Not recorded yet: copy from the reference event | Not recorded yet: copy from the reference event |
+| 7 | MassHire Job Seeker ID number | Short text, optional | — |
 
-Create questions 2–6 with `POST /events/<event_id>/questions/`. Set
+Create questions 2–7 with `POST /events/<event_id>/questions/`. Set
 question 1 the way the reference event has it: read the reference event's
 built-in fields (`GET /events/<ref_event_id>/canned_questions/`) and match
 it.
@@ -162,8 +163,9 @@ skipping any that repeat a default. The tag list goes in the review packet.
   windows — confirm by reading them back
   (`GET /events/<event_id>/ticket_classes/`), not just from the create
   response.
-- [api] Questions 2–6 present, required, on `Registration` (or every slot
-  ticket) and not on `Admission`; the cell phone field is on and required;
+- [api] Questions 2–7 present on `Registration` (or every slot ticket) and
+  not on `Admission`; 2–6 required and 7 optional; the cell phone field is
+  on and required;
   the options of questions 3–6 match this file or the reference event
   exactly.
 - [api] `confirmation_message` and `instructions` both equal the standard

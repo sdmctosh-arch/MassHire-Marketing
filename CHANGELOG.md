@@ -1,5 +1,10 @@
 # Changelog
 
+## masshire-projects 1.3.4 — 2026-10-04
+
+- Order-form question 7: MassHire Job Seeker ID number, short text,
+  optional, on Registration only.
+
 ## masshire-projects 1.3.3 — 2026-10-04
 
 - Eventbrite order-form questions stored: cell phone (built-in), city or
