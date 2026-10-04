@@ -1,5 +1,26 @@
 # Changelog
 
+## masshire-projects 1.4.1 — 2026-10-04
+
+Fixes from the whole-repo standards review. Each rule now lives in one layer.
+
+- Frozen-draft stop: only in `constant-contact-email`.
+- "Updated as employers confirm": the event playbook's copy rule; the email
+  details box stays in `constant-contact-email`; the flyer takes its body
+  from the copy.
+- Campaign name formats: only in the email and Facebook components.
+- Eventbrite token missing: the run-stop rule is only in Preflight.
+- Operator adds the Eventbrite tags: the playbook's operator actions; the
+  component keeps the API fact.
+- WordPress category ids move from the event playbook to `wordpress-event`;
+  training post type, Directorist type and example ids leave the training
+  playbook.
+- Redirect count and which kinds get a flyer: only in the playbooks.
+- A preflight failure goes at the top of the review packet, not under item 9.
+- existing-check takes the Eventbrite org id from `eventbrite-event`.
+- Repo: README layout lists the copied skills, `docs/agents/` and CI;
+  `mp-code-review` display name updated after the rename.
+
 ## masshire-projects 1.4.0 — 2026-10-04
 
 Fixes from the whole-repo spec review.

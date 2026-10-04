@@ -12,8 +12,8 @@ execute pass (Level 2). Deleting one is reversible and needs no approval.
 
 ## Inputs
 
-A destination URL and a slug. Two redirects per job
-fair:
+A destination URL and a slug. The playbook sets which redirects a project
+gets:
 
 | Redirect | Destination | Value it fills |
 |---|---|---|

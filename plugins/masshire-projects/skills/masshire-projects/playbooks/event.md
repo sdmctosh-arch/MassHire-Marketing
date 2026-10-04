@@ -58,7 +58,6 @@ question), **Request** (from the request, else the fallback shown),
 | `employer_link` | **Generated** by the Zoho automation in the draft pass. |
 | `employer_short_link` | **Derived**: `https://masshirecentralcc.com/<employer_slug>`. |
 | Tags | **Derived**: 4 defaults by kind + up to 6 from topic, sector, town; 10 at most. See `eventbrite-event`. |
-| Campaign names | **Derived**: `<Event Name> - YYYY-MM-DD - Email <n>` / `- Facebook <n>`. |
 | Flyer design name | **Derived**: `<Event Name> Flyer - YYYY-MM-DD`. |
 
 ## Defaults by kind
@@ -71,7 +70,7 @@ question), **Request** (from the request, else the fallback shown),
 | Email drafts | 3: announce, reminder, last call | 2: announce, last call | 2: announce, last call | 2: announce, last call |
 | Social post drafts | 1 | 1 | 1 | 1 |
 | Flyer template | MH Event - Job Fair | MH Event - Job Listings | None: no flyer | None: no flyer |
-| WordPress `event-category` | Job Fair (684); add Employer Registration (1016) when employer registration is in scope | Recruitment Event (973) | Online: Virtual Workshop (688) | Online: Virtual Workshop (688). In person: Worcester (685), Southbridge (1009). Elsewhere: flagged in the review packet. |
+| WordPress `event-category` | Job Fair; add Employer Registration when employer registration is in scope | Recruitment Event | Online: Virtual Workshop | Online: Virtual Workshop. In person: Worcester, Southbridge. Elsewhere: flagged in the review packet. |
 
 Email and social counts are fixed. They set how many drafts are created and
 nothing else: no draft carries a date, time, or resend setting.
@@ -117,9 +116,9 @@ In this order, after the review packet is approved:
   registration. When slots are on, follow the slot pattern in
   `eventbrite-event`.
 - **Announce without the employer list.** The system never reads or waits for
-  the employer registrations. Job fair emails and the flyer name sectors, not
-  employers, and say that the registration page will be updated as employers
-  confirm (the operator updates it by hand). Recruitment and hiring events
+  the employer registrations. Job fair copy names sectors, not employers, and
+  says that the registration page will be updated as employers confirm (the
+  operator updates it by hand). Recruitment and hiring events
   name `hiring_employer`.
 - **Short links where people type, full links where they click or scan.**
   The flyer's printed address and the social posts carry the short link. The
