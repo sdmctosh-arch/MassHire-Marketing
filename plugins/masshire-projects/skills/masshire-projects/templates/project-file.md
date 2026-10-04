@@ -7,6 +7,7 @@ event_date:   YYYY-MM-DD
 created:      YYYY-MM-DD
 updated:      YYYY-MM-DD
 values:
+  copy:
   event_name:
   event_date:
   start_time:
@@ -28,55 +29,30 @@ tasks:
 open_questions: []
 ---
 
-# TASK SCHEMA
-
-Every task carries these fields. Omit a field only where marked optional.
-
-| Field | Holds |
-|---|---|
-| `id` | The task name from the playbook's task list. |
-| `status` | todo, blocked, draft, approved, done, skipped, stale. |
-| `needs` | Task ids that finish first. Conditional entries are resolved at intake; a task not in this file is never named here. |
-| `uses` | Value names. A change to any of them marks this task stale. |
-| `blocked_by` | Required when status is blocked: the missing fact or the failing check. |
-| `output` | Optional. The file path, url, or external id this task produced. |
-
-Times are stored as 24-hour `HH:MM` in the America/New_York time zone
-(`10:00`, `13:30`). `online_platform` is filled for online events only.
-
-For a training project, the values block holds `training_link`, `path`, and
-`public_link` instead of the event values.
-
 # STATUS
 
-What is waiting on whom, in three lines or fewer. During handoff: the
-operator's remaining work as a numbered list.
-
 # SOURCE REQUEST
-
-The original request, unedited.
 
 # FACTS
 
 | Field | Value | Source |
 |---|---|---|
 
-Source is one of: request, default, derived, lookup, generated, written.
-Facts one task uses go here; shared facts go in the values block.
-
 # LOG
 
 | Date | Event |
 |---|---|
-
-One line per completed task, per value change, one `Approved: review packet`
-line, and one `Executed: <task> <action>` line per execute action.
 
 # DECISIONS AND FAILURES
 
 | # | Decision or failure | Kind | Rule |
 |---|---|---|---|
 
-Kind: project fact, project-type rule, tool fact, universal rule, or
-constraint rule. At close, everything except project facts moves to its home
-and is deleted here.
+<!-- Schema, statuses, checkpoints, and staleness: systems/project-store.md.
+     The values block holds every field two or more tasks list in `uses`.
+
+| Type | Values block |
+|---|---|
+| event | The keys in the front matter above. |
+| training | `copy`, `training_link`, `path`, `public_link` |
+-->

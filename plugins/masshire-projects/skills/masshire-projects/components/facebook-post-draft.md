@@ -7,13 +7,14 @@ the delivery, created in the draft pass (Level 1: a DRAFT is not public).
 ## Inputs
 
 The copy in `descriptions/`, the social post count from the playbook, and
-jobseeker_short_link (event) or public_link (training). Posts carry no image:
-the flyer is a print design, not a social one.
+the values this task lists in `uses` (the link is jobseeker_short_link for an
+event and public_link for a training). Posts carry no image: the flyer is a
+print design, not a social one.
 
 ## Process
 
 1. Write each post to `social/post-<n>.txt` in the project folder. Text
-   derives from the copy; do not write new event facts. Short, one link,
+   derives from the copy's `summary` part; do not write new event facts. Short, one link,
    plain language. No hashtags.
 2. Create the Constant Contact social draft:
    `create_social_post`, `status: DRAFT`, one `profile_posts` entry:
@@ -47,4 +48,5 @@ the flyer is a print design, not a social one.
 - [script] The link equals this project's short link (event) or public_link
   (training).
 - [script] The profile id is the one above.
+- [script] No `awaiting your answer` in the text.
 - [judgement] The text reads well on its own, with no image.

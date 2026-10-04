@@ -1,5 +1,102 @@
 # Changelog
 
+## masshire-projects 1.9.0 — 2026-10-04
+
+The WordPress post procedure gets its own file.
+
+- New `systems/wordpress.md`: Novamira access, the site facts (post types,
+  taxonomies, meta conventions, the Events Calendar being inactive), the
+  one-read-before-the-first-write rule, the draft-post procedure (find,
+  create or update, fields, terms, preview and sample permalink, publish,
+  media upload) with its `execute-php` call shapes, the two term policies
+  (fixed; match or propose), and the checks every post gets.
+- `wordpress-event`, `training-post`, and `directorist-listing` shrink to a
+  field table, a term policy, and their own checks; they run the procedure
+  instead of describing it three times. `vanity-redirect` and
+  `existing-check` name the system for their access.
+- The training playbook's term rows name the policy instead of restating
+  it. Tests: `training-path-b` asserts the terms are matched on meaning and
+  nothing is created in the draft pass. `GLOSSARY.md` gains "term policy".
+
+## masshire-projects 1.8.0 — 2026-10-04
+
+One live-system check.
+
+- `existing-check` searches every target the chosen playbook creates in,
+  at intake, and records per target `matched: <id>` or `none`: Eventbrite
+  events, WordPress event posts, Zoho `Job_Fairs`, redirect paths (the
+  slug candidates, by `vanity-redirect`'s rules and path check), and for
+  trainings the `training` post and the Directorist listing.
+- Components stop searching on their own: `zoho-job-fair`,
+  `training-post`, and `directorist-listing` read the record and update or
+  create; `vanity-redirect` keeps the path check as a tool fact and its
+  execute-time recheck, and has no draft step of its own.
+- The training playbook gains an `existing-check` task (1); the rest
+  renumber. SKILL.md's "search before you create" names its owner.
+- Tests: `training-path-b` World says no training post or listing exists
+  and asserts the check ran for both; `job-fair-complete` asserts a result
+  per target. `GLOSSARY.md` gains "existing-check".
+
+## masshire-projects 1.7.0 — 2026-10-04
+
+The project store gets its own file; a fourth layer, `systems/`.
+
+- New `systems/project-store.md` (ADR-0001): where state lives, `index.md`,
+  Drive tool loading, opening and creating a project, writing and renaming
+  files, the project-file schema (header, values, tasks, statuses, body
+  sections), checkpoints, values and staleness, and the repair of old
+  project files. Every sentence of it left SKILL.md or the template.
+- SKILL.md keeps the run; a six-line "Project state" section points at the
+  store. Starting and resuming a project open the store in one step.
+- The template is a skeleton again: front matter and empty sections. The
+  schema prose, the second status list, and the time-format rule are in
+  the store. Every project file created from it is shorter.
+- Repo: CLAUDE.md and README list the fourth layer; the validator requires
+  every `systems/*.md` to be named by SKILL.md, a playbook, or a
+  component. `GLOSSARY.md` is in the prescribed format and gains "project
+  store" and "system". Behavior is unchanged; no scenario changes.
+
+## masshire-projects 1.6.0 — 2026-10-04
+
+The field contract is declared once and checked.
+
+- `copy` is declared in both playbooks' field tables (**Generated** by
+  `description-copy`).
+- The template states the values-block rule (every field two or more tasks
+  use) and lists the training values in a table the validator reads.
+- Component Inputs sections no longer repeat the value names; they point
+  at the task's `uses`.
+- `validate.py` checks the contract: every `uses` name is a field the same
+  playbook declares, every `needs` entry is an earlier row, the template's
+  values block holds every shared field and nothing undeclared, for both
+  types. A renamed or missing value is now a validation error instead of a
+  silent staleness hole.
+
+## masshire-projects 1.5.0 — 2026-10-04
+
+The copy gets its own component.
+
+- New `components/description-copy.md`: the copy's six parts (`headline`,
+  `summary`, `details`, `audience`, `bring`, `body`, each a `data-part`
+  block), the content by kind, the voice, the gap marker and its redraft,
+  the subagent handoff, and the copy checks. Both task tables name it.
+- Voice rules leave `constant-contact-email`; its "Details by project type"
+  table and the per-kind body column go. Each channel now names the part it
+  takes: email `{{BODY}}`, flyer `body`, the WordPress content line, and the
+  social text take `summary`; the details box is `details` then `audience`;
+  `{{CTA_LINE}}` is `bring`; the training post is every part but
+  `headline`; the listing excerpt is `summary` plus `body`.
+- "No promise a third party controls" lives only in `description-copy`;
+  the Eventbrite, flyer, and email checks become "matches the copy", and
+  every publishing component checks for `awaiting your answer`.
+- `copy` is a value: `description-copy` fills it with the file's Drive id,
+  and every taker lists `copy` in `uses`, so a redraft marks them stale.
+  The playbooks' sectors rule and "eligibility is public" move into the
+  content-by-kind table; the template's values block gains `copy`.
+- Repo: `GLOSSARY.md` created with copy, part, and gap marker. Tests:
+  `job-fair-complete` asserts the parts and who takes which;
+  `missing-required-fact` asserts the exact marker and the `copy` uses.
+
 ## masshire-projects 1.4.1 — 2026-10-04
 
 Fixes from the whole-repo standards review. Each rule now lives in one layer.

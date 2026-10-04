@@ -33,7 +33,8 @@ independent: run their players in parallel, then their graders in parallel.
    You are testing a Claude skill by playing it in a dry run.
 
    Read plugins/masshire-projects/skills/masshire-projects/SKILL.md and every
-   playbook, component, or template it tells you to read for this message.
+   playbook, component, system, or template it tells you to read for this
+   message.
    Read nothing under tests/ and nothing outside that skill folder.
 
    Do not call any connector, MCP tool, network, or Drive tool. Every external

@@ -11,9 +11,11 @@ for one.
 
 ## Inputs
 
-The copy in `descriptions/<project>.html`; the values the project type
-supplies (event: event_date, start_time, end_time, venue, jobseeker_link;
-training: public_link); the email draft count and roles from the playbook.
+The copy in `descriptions/<project>.html`, by its parts (`summary`,
+`details`, `audience`, `bring`; see `description-copy`); the values this task
+lists in `uses` (the playbook task table; the REGISTER link is
+jobseeker_link for an event and public_link for a training); the email draft
+count and roles from the playbook.
 
 ## Account details
 
@@ -46,10 +48,10 @@ Seven tokens. `{{BUTTON_LINK}}` appears twice; substitute both.
 |---|---|
 | `{{PREHEADER}}` | Same text as the `preheader` API field. Set both. |
 | `{{HEADLINE}}` | `Event Name — Date`. The white H1 in the navy hero. |
-| `{{BODY}}` | One sentence, close in meaning to the preheader. Not a paragraph. |
+| `{{BODY}}` | The copy's `summary` part: one sentence. Not a paragraph. |
 | `{{DETAILS_HEADING}}` | `Event Details`, `Training Details`, `Webinar Details`. |
-| `{{DETAILS_BODY}}` | Date, time and location; a blank line; who may come and what is still to be announced; then anything else specific to this project. `<p style="margin: 0;">` elements. |
-| `{{CTA_LINE}}` | One sentence above the second REGISTER button: what to bring, what to expect. |
+| `{{DETAILS_BODY}}` | The copy's `details` part; a blank line; its `audience` part; then anything else specific to this project. `<p style="margin: 0;">` elements. |
+| `{{CTA_LINE}}` | The copy's `bring` part, one sentence, above the second REGISTER button. |
 | `{{BUTTON_LINK}}` | jobseeker_link (event) or public_link (training), in both REGISTER buttons. |
 
 `{{DETAILS_BODY}}` is the only place the date, time and location appear in
@@ -78,15 +80,11 @@ date.
 
 ## Copy rules
 
-Each draft takes its facts from the approved copy in `descriptions/`. These
-rules shape how that copy is cut down for email.
+Each draft takes its facts and its voice from the approved copy in
+`descriptions/` (`description-copy`); the email adds nothing to either.
+These rules shape how that copy is cut down for email.
 
 - **Concise.** The body is one sentence.
-- **Natural and direct.** Short sentences, active voice.
-- **Warm, not promotional.** No hype words ("amazing opportunity", "don't
-  miss out", "exciting").
-- **Plain language.** No workforce-development jargon (WIOA, CTI, RESEA)
-  unless the audience already knows it. Spell out or skip acronyms.
 - **One clear ask.** REGISTER is the single primary action.
 - **No registration mechanics.** Slot lengths, ticket class names, "reserve a
   30-minute slot": none of it goes in the email. The REGISTER page explains
@@ -104,22 +102,12 @@ rules shape how that copy is cut down for email.
 
 | Role | Headline | Body | Details |
 |---|---|---|---|
-| announce | Event or program name — date | Job fair: who is hiring (sectors, not employers). Recruitment/hiring: `hiring_employer` and the work. Webinar/workshop: what attendees will learn. Training: what the training leads to. | Full details box. |
-| reminder | Same event, new wording | One sentence restating why to come. | Full details box. |
+| announce | Event or program name — date | The copy's `summary`. | Full details box. |
+| reminder | Same event, new wording | One sentence restating why to come, from the copy. | Full details box. |
 | last call | Same event, new wording | One sentence: the event is soon. | Full details box. |
 
-Details by project type:
-
-- Job fair: date, time, location; then that it is free and open to
-  jobseekers, and that the registration page will be updated as employers
-  confirm.
-- Recruitment, hiring: date, time, location; then `hiring_employer`, and that
-  it is free and open to jobseekers.
-- Webinar: date, time, platform (`online_platform`); "no account required"
-  only if a source says so.
-- Workshop: date, time, location, and the topic.
-- Training: start date, schedule, location, cost ("no cost" only when a
-  source says it is free), application deadline.
+The details box is the same on every role and every project type: the
+copy's `details`, then its `audience`.
 
 A correction email (venue, date, or time changed after an email went out) is
 drafted only when the operator asks for one: a sent email is a published
@@ -210,6 +198,7 @@ stay accurate to the content.
   (training: public_link), not a template's old link and not a concurrent
   project's.
 - [script] No unresolved `{{ }}` tokens in the returned preview.
+- [script] No `awaiting your answer` in the returned preview.
 - [script] Exactly one compliance footer.
 - [script] The number of drafts equals the playbook's count.
 - [script] Details box filled; date, time, and location appear there and
@@ -217,8 +206,7 @@ stay accurate to the content.
 - [script] Subject and preheader filled; subject under the length rule.
 - [judgement] Subjects specific and distinct between drafts; each resend
   subject differs from its subject.
-- [judgement] Body is one sentence; jobseeker tone; no hype words; acronyms
-  spelled out; no registration mechanics; no promises a third party
-  controls.
+- [judgement] Body is one sentence; no registration mechanics; the text
+  matches the copy.
 - [judgement] Brand blocks intact: logo, navy hero, green CTA band,
   dual-office footer.

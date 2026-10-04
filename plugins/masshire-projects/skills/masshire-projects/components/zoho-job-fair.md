@@ -17,10 +17,8 @@ the WordPress event, or staff share it.
 
 ## Process
 
-1. Search the module first, matching on name AND event date. Two nearby
-   events with similar names is exactly the case that matters. A duplicate
-   record makes a second link and splits the employer registrations.
-2. If no record exists: create one with `Name` = `event_name` and
+1. If `existing-check` recorded a matching `Job_Fairs` record, use it.
+2. Otherwise create one with `Name` = `event_name` and
    `Event_Date` = `event_date`.
 3. Read back `Registration_Link`. If it is still empty, recheck up to three
    times, a short wait apart. Still empty: leave `employer_link` empty, draft

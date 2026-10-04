@@ -3,12 +3,13 @@
 A short masshirecentralcc.com path that forwards to a long registration URL,
 so a flyer, a social post, or a spoken announcement carries one readable link.
 
-Access: the Redirection plugin has no Novamira ability. Create and read
-redirects by running PHP through the Novamira connector
-(`novamira/execute-php`), which loads the plugin's own `Red_Item` class.
-The slug is chosen and checked in the draft pass and shown in the review
-packet, because it goes on printed material. The redirect is created in the
-execute pass (Level 2). Deleting one is reversible and needs no approval.
+Access: the `wordpress` system (Novamira `execute-php`). The Redirection
+plugin has no Novamira ability and a redirect is not a post, so this
+component holds its own PHP, which loads the plugin's `Red_Item` class.
+The slug is chosen at intake by `existing-check`, using the path check
+below, and shown in the review packet, because it goes on printed material.
+The redirect is created in the execute pass (Level 2). Deleting one is
+reversible and needs no approval.
 
 ## Inputs
 
@@ -36,9 +37,11 @@ Read the destination from this project's values block, which the
 - A slug is reused across years only if the old redirect is repointed, never
   duplicated. Check first.
 
-## Process
+## The path check
 
-1. Check the plugin is active and the path is free, in one read:
+`existing-check` runs this at intake for each slug candidate; the execute
+pass runs it again. Check the plugin is active and the path is free, in one
+read:
 
    ```php
    global $wpdb;
@@ -56,14 +59,15 @@ Read the destination from this project's values block, which the
    also hits every longer slug that contains this one, so `graftonfair`
    would be rejected because `graftonfairemployer` exists.
    A row in `existing`, or a non-zero `post_at_path` (a real page owns the
-   path), means the slug is not usable. Take the next candidate by the slug
-   rules (add the format word, e.g. `southbridgefair` → `southbridgejobfair`)
-   and check again. Never repoint an existing redirect without the operator
-   saying so. Record the chosen slug as a value; it goes in the review packet
-   with any rejected candidates. This is the end of the draft pass for this
-   task.
+   path), means the slug is not usable: the next candidate by the slug rules
+   (add the format word, e.g. `southbridgefair` → `southbridgejobfair`).
 
-2. Execute pass: run the step 1 check again (the path may have changed since
+## Process
+
+1. Draft pass: the slug `existing-check` chose is already a value. Nothing
+   else to do; this task has no draft of its own.
+
+2. Execute pass: run the path check again (the path may have changed since
    the review), then create it:
 
    ```php
@@ -94,7 +98,7 @@ Read the destination from this project's values block, which the
 
 3. Record the redirect id in the task, so it can be repointed or deleted
    later, and write the LOG line with the id. (The short URL value was
-   filled in the draft pass, when the slug was chosen.)
+   filled at intake, when the slug was chosen.)
 
 ## Rollback
 

@@ -19,7 +19,8 @@ Source key as in `playbooks/event.md`.
 | `application_deadline` | **Request** or **Lookup**; used in copy only. |
 | `training_start` | **Request** or **Lookup**; used in copy only. |
 | `public_link` | **Derived**. Path A: `training_link`. Path B: the training post's permalink, read from the draft's sample permalink in the draft pass and confirmed after publish. |
-| `training-category` term | **Derived**: match an existing term on meaning; a new term is listed in the review packet and created at execute. |
+| `copy` | **Generated** by `description-copy`: the Drive id of `descriptions/<project>.html`. Every task that takes from the copy lists it in `uses`. |
+| `training-category` term | **Derived** by the `wordpress` match-or-propose term policy. |
 | Directorist category and location terms | **Derived**, the same way. |
 | Listing search text, excerpt | **Written**. |
 
@@ -44,13 +45,14 @@ Source key as in `playbooks/event.md`.
 
 | # | Task | Component | needs | uses |
 |---|---|---|---|---|
-| 1 | description-copy | Copy rules in SKILL.md | — | all facts |
-| 2 | training-post (path B only) | `training-post` | 1 | training_link, organization |
-| 3 | directorist-listing | `directorist-listing` | 2 on path B; 1 on path A | public_link |
-| 4 | training-emails | `constant-contact-email` | 1; 2 on path B | public_link |
-| 5 | facebook-post | `facebook-post-draft` | 1; 2 on path B | public_link |
-| 6 | review-packet | SKILL.md | all above | — |
-| 7 | execute | Execute list below | 6 approved | — |
+| 1 | existing-check | `existing-check` | — | training_title |
+| 2 | description-copy | `description-copy` | — | all facts |
+| 3 | training-post (path B only) | `training-post` | 1, 2 | copy, training_link, organization |
+| 4 | directorist-listing | `directorist-listing` | 1; 3 on path B; 2 on path A | copy, public_link |
+| 5 | training-emails | `constant-contact-email` | 2; 3 on path B | copy, public_link |
+| 6 | facebook-post | `facebook-post-draft` | 2; 3 on path B | copy, public_link |
+| 7 | review-packet | SKILL.md | all above | — |
+| 8 | execute | Execute list below | 7 approved | — |
 
 ## Execute list
 
@@ -69,8 +71,6 @@ Source key as in `playbooks/event.md`.
   browsing. The emails and the social post use `public_link`.
 - **Path B order is fixed at execute.** The training post publishes before
   the listing.
-- **Eligibility is public.** Stated eligibility requirements go in the
-  training post description.
 
 ## Operator actions
 
