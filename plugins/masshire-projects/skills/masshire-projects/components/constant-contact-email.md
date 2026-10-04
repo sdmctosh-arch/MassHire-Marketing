@@ -110,8 +110,11 @@ rules shape how that copy is cut down for email.
 
 Details by project type:
 
-- Job fair, recruitment, hiring: date, time, location; then whether employers
-  are still to be announced, and that it is free and open to jobseekers.
+- Job fair: date, time, location; then that it is free and open to
+  jobseekers, and that the registration page will be updated as employers
+  confirm.
+- Recruitment, hiring: date, time, location; then `hiring_employer`, and that
+  it is free and open to jobseekers.
 - Webinar: date, time, platform (`online_platform`); "no account required"
   only if a source says so.
 - Workshop: date, time, location, and the topic.

@@ -1,5 +1,29 @@
 # Changelog
 
+## masshire-projects 1.2.0 — 2026-10-04
+
+Fixes from the first behavior-test run.
+
+- Approve publishes unless something major is missing (a Required fact, an
+  unconfirmed existing-check conflict, an item that failed its own checks,
+  or a link to nothing). Only the affected actions are skipped; the rest
+  run, and blocked drafts go in the handoff.
+- Eventbrite order-form questions get a stored table in `eventbrite-event`
+  (to be filled; until then they are copied from the reference event). If
+  the API refuses a setting, the reference event is copied and updated.
+  Questions endpoint corrected to `/questions/`.
+- The flyer QR encodes the Eventbrite link; the printed address stays the
+  short link. flyer-qr no longer waits on short-links.
+- The WordPress event no longer waits on the flyer; the flyer is added when
+  it exists, or listed in the handoff. Facebook posts are text-only.
+- Job fair emails and flyer say the registration page will be updated as
+  employers confirm.
+- Eventbrite tags: up to 10 (4 defaults + up to 6).
+- Short-link availability check matches the exact path, not any slug that
+  contains it.
+- Tests: job-fair-complete covers the new rules; new scenarios
+  approve-with-minor-block and approve-with-major-block.
+
 ## Repo — 2026-10-04
 
 - Behavior tests: six scenarios in `tests/scenarios/` and the `test-skill`

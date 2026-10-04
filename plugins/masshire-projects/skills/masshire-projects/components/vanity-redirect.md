@@ -45,12 +45,16 @@ Read the destination from this project's values block, which the
    return [
      'plugin_active' => class_exists('Red_Item'),
      'existing'      => $wpdb->get_results($wpdb->prepare(
-         "SELECT id, url, action_data, status FROM {$wpdb->prefix}redirection_items WHERE url LIKE %s",
-         '%<slug>%'), ARRAY_A),
+         "SELECT id, url, action_data, status FROM {$wpdb->prefix}redirection_items WHERE url IN (%s, %s)",
+         '/<slug>', '/<slug>/'), ARRAY_A),
      'post_at_path'  => url_to_postid(home_url('/<slug>')),
    ];
    ```
 
+   The match is exact (the path with and without a trailing slash; the
+   table's collation ignores case). Never match with `LIKE '%<slug>%'`: it
+   also hits every longer slug that contains this one, so `graftonfair`
+   would be rejected because `graftonfairemployer` exists.
    A row in `existing`, or a non-zero `post_at_path` (a real page owns the
    path), means the slug is not usable. Take the next candidate by the slug
    rules (add the format word, e.g. `southbridgefair` → `southbridgejobfair`)
@@ -88,9 +92,9 @@ Read the destination from this project's values block, which the
    which is why repointing a reused slug needs a cache-clear warning to the
    operator.
 
-3. Record the short URL (`https://masshirecentralcc.com/<slug>`) as the
-   value, and the redirect id in the task, so it can be repointed or deleted
-   later. Write the LOG line with the id.
+3. Record the redirect id in the task, so it can be repointed or deleted
+   later, and write the LOG line with the id. (The short URL value was
+   filled in the draft pass, when the slug was chosen.)
 
 ## Rollback
 

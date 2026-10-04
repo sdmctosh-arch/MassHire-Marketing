@@ -1,6 +1,6 @@
 {
   "name": "masshire-projects",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Orchestrate MassHire marketing projects (job fairs, recruitment and hiring events, webinars, workshops, and training promotions) from an incoming request to finished deliverables, including Constant Contact email drafts, with one review gate. Drafts only: the system never sends or schedules.",
   "author": {
     "name": "Steven",

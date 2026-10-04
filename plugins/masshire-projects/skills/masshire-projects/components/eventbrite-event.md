@@ -33,11 +33,11 @@ file or any file in the workspace.
    `status: draft`, the values-block date/time, the matched venue ID, and
    the copy from `descriptions/<project>.html` as the HTML
    description.
-4. Build the ticket classes and order-form questions per the patterns below.
-   Confirm the request bodies match the known-good reference event for the
-   pattern (pull it via `GET /events/<ref_event_id>/ticket_classes/` and
-   `.../order_confirmation_questions/`) before creating new ones — don't
-   invent field values from general API knowledge alone.
+4. Build the ticket classes and order-form questions from the settings
+   stored below. Never invent a field value from general API knowledge.
+   If a setting in this file is marked "not recorded", or the API refuses to
+   create a question or a setting, use the fallback in "When the API cannot
+   build it".
 5. Set the order confirmation (see below).
 6. Record the event id in the task, and the draft's public URL (the `url`
    field of the create response) as the `jobseeker_link` value. The URL does
@@ -50,7 +50,7 @@ file or any file in the workspace.
 2. Confirm `jobseeker_link` opens the live event page.
 3. Read the tags back (see Tags). Missing tags are reported, not blocking.
 
-## Ticket patterns (verify against the reference event; do not rebuild from scratch)
+## Ticket patterns
 
 Common to every pattern:
 
@@ -77,12 +77,37 @@ Reference: Worcester Job Fair, event `2000642954934`.
 
 ## Order-form questions
 
-- Six questions, fixed set and fixed option lists. Never delete a question;
-  scope it to a ticket class. Only the Job Seeker ID question shows on the
-  walk-in `Admission` ticket. The questions scoped to `Registration` in the
-  general pattern are scoped to every slot ticket in the slot pattern.
-  Question 6 ("How did you hear...") measures the marketing channels; its
-  options must not change between events.
+Six questions, a fixed set with fixed option lists. Create them with
+`POST /events/<event_id>/questions/`. Never delete a question; scope it to a
+ticket class. Only the Job Seeker ID question shows on the walk-in
+`Admission` ticket. The questions scoped to `Registration` in the general
+pattern are scoped to every slot ticket in the slot pattern. Question 6
+measures the marketing channels; its options never change between events.
+
+| # | Question text | Type | Required | Options | Ticket classes |
+|---|---|---|---|---|---|
+| 1 | not recorded | | | | Registration (slot tickets) |
+| 2 | not recorded | | | | Registration (slot tickets) |
+| 3 | not recorded | | | | Registration (slot tickets) |
+| 4 | not recorded | | | | Registration (slot tickets) |
+| 5 | Job Seeker ID (exact wording not recorded) | | | | Registration (slot tickets), Admission |
+| 6 | How did you hear... (exact wording and options not recorded) | | | | Registration (slot tickets) |
+
+While a row reads "not recorded", copy that question from the reference
+event (`GET /events/<ref_event_id>/questions/`). Then list the exact text,
+type, required flag, and options in the review packet as "record in
+`eventbrite-event`", so the operator can store them here.
+
+## When the API cannot build it
+
+If the API refuses a ticket setting or a question, copy the reference event
+for the pattern (`POST /events/<ref_event_id>/copy/`) instead of building
+from scratch. The copy carries the ticket classes, the questions, and their
+scoping. Then update the copy to this project: name, dates and times,
+venue, description, each ticket class's sales window, and status `draft`.
+Run every check below on the copy; a copy that keeps the reference event's
+dates or name is a failed check. Record in the task that the event was
+copied, and from which reference event.
 
 ## Order confirmation
 
@@ -105,10 +130,11 @@ Eventbrite fills the `text` form from `html`. Verified on a draft event,
 
 ## Tags
 
-Default tags on every event: `employment`, `jobs`, `jobfair`, `hiring`. Add
-2-3 tags for this event from its kind, topic, or sector (for example
-`webinar`, `workshop`, `manufacturing`). The tag list goes in the review
-packet.
+Default tags on every event: `employment`, `jobs`, `jobfair`, `hiring`.
+Eventbrite allows 10 tags. Add up to 6 more for this event from its kind,
+topic, sectors, and town (for example `webinar`, `manufacturing`,
+`southbridge`), skipping any that repeat a default. The tag list goes in the
+review packet.
 
 - [constraint: no API write] The public API v3 has no endpoint that writes
   tags (`event.tags` is rejected; `/events/<id>/tags/` does not exist —

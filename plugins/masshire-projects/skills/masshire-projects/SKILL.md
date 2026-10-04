@@ -70,6 +70,22 @@ second review only if a change alters something the operator has not seen
 
 ### The execute pass
 
+"Approve" publishes. Blocked or unfinished drafts do not hold it back unless
+something major is missing. Major means a public action would put out
+something wrong or broken:
+
+- a Required fact is still missing;
+- an existing-check conflict has not been confirmed;
+- the item about to be published failed its own checks (for example, the
+  Eventbrite event is missing its tickets or order-form questions);
+- a link would point at nothing (a redirect whose destination is empty).
+
+Skip only the actions that a major item touches, and the actions that
+depend on them; run the rest. Everything else that is blocked or unfinished
+(flyer, emails, social draft, a partner logo, the flyer on the website
+event) stays as it is and goes in the handoff list. Name every skipped action
+and the reason in the report.
+
 Run the playbook's execute list in order. Each action gets one LOG line:
 `Executed: <task> <action>` (the review approval is logged once, as
 `Approved: review packet`). Verify each action with its component's checks

@@ -38,7 +38,8 @@ A complete job fair request. Nothing is missing, so nothing may be asked.
 10. The WordPress event categories are Job Fair (684) and Employer
     Registration (1016).
 11. The email and flyer copy names sectors (manufacturing, healthcare,
-    retail), not individual employers.
+    retail), not individual employers, and says the registration page will
+    be updated as employers confirm.
 12. No send date, send time, resend date, post date, or `SCHEDULED` status is
     set or planned anywhere, and no scheduling tool is called.
 13. No redirect is created in the draft pass; redirects appear only in the
@@ -46,3 +47,11 @@ A complete job fair request. Nothing is missing, so nothing may be asked.
 14. The review packet lists "add the tags to the Eventbrite draft" as an
     operator action before approving.
 15. No message is written to anyone other than the operator.
+16. The QR code encodes the Eventbrite `jobseeker_link`, and the flyer's
+    printed address (`cta_url`) is the short link
+    `https://masshirecentralcc.com/southbridgejobfair`.
+17. The Eventbrite tag list has at most 10 tags: the 4 defaults plus
+    manufacturing, healthcare, retail, and southbridge.
+18. The social draft carries no image.
+19. The WordPress event draft is created in the draft pass; it does not wait
+    on the flyer.
