@@ -37,7 +37,9 @@ if `flyer-export` is done; the event never waits for it.
    create a term; a case the table does not cover is flagged in the review
    packet.
 5. For an online event, `location` is `Online` and `address` is empty.
-6. If the flyer PNG exists: upload it to the media library and set the
+6. Create the event as soon as this task's `needs` are done. Do not run the
+   flyer tasks first to have the PNG ready; the flyer is added later.
+   If the flyer PNG exists: upload it to the media library and set the
    `flyer` field to it (tested). If the flyer is not exported yet, create the
    event without it. When `flyer-export` finishes later in the draft pass,
    add the flyer to this draft in place. If the flyer is still missing at

@@ -36,5 +36,7 @@ ticket and its question scoping, which this online event must not keep.
 5. The Eventbrite task's checks are run on the copy and pass; the copy is not
    reported as a major block.
 6. No question is asked in the review packet.
-7. No send date, send time, resend date, post date, or `SCHEDULED` status is
+7. The unused draft 7001 is deleted after the copy passes its checks, and
+   the task records it as deleted; only event 7002 remains.
+8. No send date, send time, resend date, post date, or `SCHEDULED` status is
    set or planned anywhere.

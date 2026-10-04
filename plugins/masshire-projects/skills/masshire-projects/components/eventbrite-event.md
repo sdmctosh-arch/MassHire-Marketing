@@ -123,6 +123,11 @@ Run every check below on the copy; a copy that keeps the reference event's
 dates or name is a failed check. Record in the task that the event was
 copied, and from which reference event.
 
+If this run created a draft event before the refusal, delete that draft
+(`DELETE /events/<event_id>/`) once the copy passes its checks, so only one
+draft remains, and record its id as deleted in the task. Never delete an
+event this run did not create, such as one existing-check matched.
+
 ## Order confirmation
 
 Set both fields to exactly this text, on every event:

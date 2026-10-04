@@ -12,7 +12,10 @@ Fixes from the whole-repo spec review.
   components update a matched object instead of creating a second one.
 - The copy-the-reference fallback also deletes ticket classes the pattern
   lacks (the walk-in ticket for online events), scopes questions 2–7 to
-  Registration, and makes question 7 optional.
+  Registration, and makes question 7 optional. A draft the run created
+  before the refusal is deleted once the copy passes its checks.
+- `wordpress-event` is created as soon as its needs are done; the draft
+  pass is not reordered to run the flyer first.
 - `create_email_campaign` is called with the campaign `name`.
 - The Facebook profile id no longer points to an `index.md` section that
   does not exist.
