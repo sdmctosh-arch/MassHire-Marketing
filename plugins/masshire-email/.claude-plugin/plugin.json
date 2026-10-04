@@ -1,9 +1,0 @@
-{
-  "name": "masshire-email",
-  "version": "1.0.0",
-  "description": "Draft and build MassHire Central Career Centers marketing and outreach emails, and create them as drafts in Constant Contact through the MCP connector, using the brand voice, tokenized base HTML, subject-line conventions, and CAN-SPAM footer rules.",
-  "author": {
-    "name": "Steven",
-    "email": "sdmctosh@gmail.com"
-  }
-}

@@ -62,7 +62,9 @@ Real example of path B: training post 56574 and listing 56577.
    `public_link`; if not, update `public_link` (staleness marks the listing,
    emails, and social post stale — correct each before step 3).
 3. Publish the Directorist listing.
-4. Report, and write the handoff list to STATUS.
+4. Confirm every email draft's REGISTER buttons point at the live
+   `public_link` (the destination check in `constant-contact-email`).
+5. Report, and write the handoff list to STATUS.
 
 ## Rules for this project type
 

@@ -1,6 +1,6 @@
 ---
 name: masshire-projects
-description: Orchestrate MassHire multi-step marketing projects (events — job fairs, recruitment and hiring events, webinars, workshops — and trainings) from an incoming request to finished deliverables, with one review gate. Use this skill whenever Steven starts a new event or marketing project, pastes a request email, says "new job fair", "new recruitment event", "new hiring event", "new webinar", or "new workshop", approves or corrects a review packet, resumes a project, asks for project status, or says "close" a project. Playbooks define each project type; components define each task; a per-project markdown file holds all state.
+description: Orchestrate MassHire multi-step marketing projects (events — job fairs, recruitment and hiring events, webinars, workshops — and trainings) from an incoming request to finished deliverables, with one review gate. Use this skill whenever Steven starts a new event or marketing project, pastes a request email, says "new job fair", "new recruitment event", "new hiring event", "new webinar", or "new workshop", approves or corrects a review packet, resumes a project, asks for project status, or says "close" a project. Also use it for any MassHire email request — drafting, a reminder, a resend, a correction, building a Constant Contact draft — even if Constant Contact is not named; this skill drafts email and never sends or schedules it. Playbooks define each project type; components define each task; a per-project markdown file holds all state.
 ---
 
 # MassHire Project Orchestration
@@ -126,6 +126,7 @@ MassHire Projects/                 id 1AczGC82kIJlLGGUHy59hgJ9Emm74Nkr-
   index.md                         registry of every project — read this first
   masshire-projects/               id 1SdRqj_wUMgolxLq-RMuFBUQpa7OgD590
     eventbrite-token.txt           shared credentials, not project state
+    templates/jobseeker-email.html the email base HTML (see `constant-contact-email`)
   <slug>/                          one folder per project
     project.md                     the project file, single source of truth
     descriptions/                  the approved copy, one .html per project
@@ -189,8 +190,7 @@ each other connector's tools in one call when its first task starts.
 ## Starting a project
 
 1. Load the Drive tools; read `index.md`.
-2. Read the playbook for the project type: `playbooks/<type>.md`. Read the
-   `masshire-email` skill's SKILL.md now; the email component needs it.
+2. Read the playbook for the project type: `playbooks/<type>.md`.
 3. Run Preflight.
 4. Create the Drive folder `<slug>/` under `MassHire Projects`, and write
    `templates/project-file.md` into it as `project.md`. Append the project's
@@ -301,9 +301,15 @@ job-fair`; fix its header when it is next opened. A project file with
 `marketing-plan` task, or a `freeze-read` task was made by the old version of
 this skill: delete those fields and tasks when it is next opened.
 
-Job alerts, weekly newsletter, and job board update are not written yet. Do
-not improvise one; run the project by hand and record the lessons, then write
-the playbook.
+Job alerts, weekly newsletter, job board update, and employer emails are not
+written yet. Do not improvise one; run the project by hand and record the
+lessons, then write the playbook.
+
+An email request about an event or training (a new draft, a reminder, a
+resend, a correction) belongs to that project: resume it and work its email
+task by `constant-contact-email`. An email request with no project behind it
+is a new project of the matching type. The system drafts email; it never
+sends or schedules one.
 
 ## Resuming a project
 

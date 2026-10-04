@@ -1,5 +1,22 @@
 # Changelog
 
+## masshire-projects 1.1.0 — 2026-10-04
+
+- Merged the masshire-email skill into masshire-projects; the separate
+  plugin is gone. Its rules now live in `components/constant-contact-email.md`,
+  rewritten to the project model:
+  - Removed send windows, resend spacing, the daily cap, SEND/RESEND dates in
+    the build sheet, and the separate pre-build approval (the review packet
+    is the approval).
+  - Removed the browser fallback (a failed connector blocks the task) and
+    the ask-about-audience stop (the operator attaches the list).
+  - Email skeletons map to the playbook roles (announce, reminder, last
+    call); correction emails are drafted only on request.
+- SKILL.md: triggers on any MassHire email request; email requests route to
+  their project; employer emails listed as not written yet; the base HTML
+  is in the Drive storage tree.
+- Training execute list gains the email destination check.
+
 ## masshire-email 1.0.0 — 2026-10-04
 
 - Imported masshire-email v1.

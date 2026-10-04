@@ -1,16 +1,18 @@
 # CLAUDE.md
 
-This repo holds the `masshire-projects` and `masshire-email` skills, one
-plugin each under `plugins/` (see README.md). Editing here changes the
-skills' source; it does not run a project or send an email.
+This repo holds the `masshire-projects` skill, packaged as a plugin under
+`plugins/` (see README.md). Editing here changes the skill's source; it does
+not run a project or send an email.
 
 ## Where a rule goes
 
-Email rules (brand voice, base HTML, subject lines, compliance, Constant
-Contact build steps) live in `masshire-email`. `masshire-projects`'
-`constant-contact-email` component points at it and must not restate it.
+The system never sends or schedules anything: no send date, send time,
+resend, or post date, in any file. Reject any rule that would add one.
 
-`masshire-projects` has three layers. Put each sentence in exactly one:
+Email rules (voice, base HTML, subject lines, compliance, Constant Contact
+tool facts) live in `components/constant-contact-email.md`.
+
+The skill has three layers. Put each sentence in exactly one:
 
 - `SKILL.md` — universal rules: the run, gates, preflight, storage, concurrency.
 - `playbooks/<type>.md` — what a project type requires: fields, defaults,

@@ -107,8 +107,8 @@ In this order, after the review packet is approved:
 2. Create the redirect(s). Confirm each short link resolves to its
    destination.
 3. Publish the WordPress event.
-4. Confirm every email draft's REGISTER button points at the live
-   `jobseeker_link` (the destination check from `masshire-email`).
+4. Confirm every email draft's REGISTER buttons point at the live
+   `jobseeker_link` (the destination check in `constant-contact-email`).
 5. Report, and write the handoff list to STATUS.
 
 ## Rules for this project type
