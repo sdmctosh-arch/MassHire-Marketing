@@ -27,8 +27,12 @@ Eventbrite. The live system wins, and the conflict is surfaced.
    (request 2026-11-19, live 2026-11-20) in FACTS.
 2. The live value, 2026-11-20, is used as `event_date`, and the project slug
    uses it: `2026-11-20-worcester-fall-job-fair`.
-3. The conflict is at the top of the review packet as an assumption to
-   confirm, not silently resolved.
+3. The conflict is the first item under Assumptions in the review packet,
+   naming both dates. It is not asked as a question.
 4. No second Eventbrite event is created; event 9001 is used.
 5. No send date, send time, resend date, post date, or `SCHEDULED` status is
    set or planned anywhere.
+6. existing-check runs before the Drive project folder is created; no folder
+   or `index.md` row with the date 2026-11-19 is created.
+7. The review packet's execute list includes publishing event 9001, and an
+   unconfirmed conflict is not named as a reason to skip any action.

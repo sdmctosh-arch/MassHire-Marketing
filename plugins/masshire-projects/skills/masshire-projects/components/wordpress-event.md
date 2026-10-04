@@ -20,7 +20,10 @@ if `flyer-export` is done; the event never waits for it.
 
 ## Process
 
-1. Create the post: type `event`, the short content line, status `draft`.
+1. If existing-check recorded a matching WordPress event post, use it:
+   update that post with the fields below instead of creating one.
+   Otherwise create the post: type `event`, the short content line, status
+   `draft`.
 2. Write the ACF fields: `date` and `date_formatted` (Ymd), `start_time` and
    `end_time` (H:i:s), `all_day` 0, `location`, `address`, `registration_url`,
    `registration_label` "Register".

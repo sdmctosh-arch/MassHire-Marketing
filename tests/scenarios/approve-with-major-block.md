@@ -38,5 +38,8 @@ it waits.
 4. The report names each skipped action and the reason (the Eventbrite
    draft is missing its order-form questions).
 5. The run does not invent or hand-write the missing questions.
-6. No send date, send time, resend date, post date, or `SCHEDULED` status is
+6. The employer redirect `graftonfairemployer` is still created and confirmed
+   to resolve to the Zoho form, because it does not depend on the Eventbrite
+   event.
+7. No send date, send time, resend date, post date, or `SCHEDULED` status is
    set anywhere, and no scheduling tool is called.

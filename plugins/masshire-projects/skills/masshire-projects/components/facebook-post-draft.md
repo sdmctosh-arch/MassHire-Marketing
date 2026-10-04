@@ -25,8 +25,8 @@ the flyer is a print design, not a social one.
                      text: <post text> }]
    ```
 
-   The profile id is MassHire's Facebook page, also listed in `index.md`
-   under Shared assets. No `images`: the post is text-only.
+   The profile id is MassHire's Facebook page. No `images`: the post is
+   text-only.
 3. Verify from the response, not by re-reading: `status` is `DRAFT`,
    `profile_name` is the MassHire page, the text came back with the link
    intact. Record `campaign_id` and the profile's

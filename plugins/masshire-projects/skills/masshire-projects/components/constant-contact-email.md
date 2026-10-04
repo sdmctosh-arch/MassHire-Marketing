@@ -132,9 +132,9 @@ details box.
 1. Read the base HTML from Drive.
 2. For each role in the playbook's count: write the content by the rules
    above, and substitute every token, `{{BUTTON_LINK}}` in both buttons.
-3. `create_email_campaign` with `from_name`, `from_email`,
-   `reply_to_email`, `subject`, `preheader`, `physical_address_in_footer`,
-   and the substituted `html_content`. No separate approval: the review
+3. `create_email_campaign` with the campaign `name` (format below),
+   `from_name`, `from_email`, `reply_to_email`, `subject`, `preheader`,
+   `physical_address_in_footer`, and the substituted `html_content`. No separate approval: the review
    packet is the approval.
 4. Record `campaign_id` and `campaign_activity_id` on the task.
 5. Run the checks against the returned preview.
