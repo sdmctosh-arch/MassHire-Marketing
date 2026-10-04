@@ -1,5 +1,11 @@
 # Changelog
 
+## Repo — 2026-10-04
+
+- Behavior tests: six scenarios in `tests/scenarios/` and the `test-skill`
+  project skill that plays each one with a fresh subagent and grades it with
+  another. The validator checks scenario format. Plugin unchanged.
+
 ## masshire-projects 1.1.0 — 2026-10-04
 
 - Merged the masshire-email skill into masshire-projects; the separate

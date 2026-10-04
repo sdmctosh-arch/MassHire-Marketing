@@ -19,6 +19,9 @@ plugins/
       playbooks/                    one file per project type
       components/                   one file per task
       templates/                    project-file.md, the per-project state file
+tests/
+  scenarios/                        behavior tests: message, simulated world, assertions
+.claude/skills/test-skill/          runs the behavior tests ("run the tests" or /test-skill)
 scripts/
   validate.py                       structural checks (run before every commit)
   package.sh                        validates, then builds dist/<plugin>-v<version>.zip
@@ -34,7 +37,8 @@ can be uploaded to claude.ai / Cowork as-is.
    wording fixes; minor: a new rule, component, or playbook; major: a change
    in how project files or stored templates are structured).
 3. Add a line to `CHANGELOG.md`.
-4. `scripts/package.sh` validates and builds the zip.
+4. `scripts/package.sh` validates and builds the zip. If the change alters
+   behavior, run the behavior tests too (see `tests/README.md`).
 5. Open a PR. CI runs the same validation and attaches the zip as a build
    artifact.
 6. After merge, upload the zip to replace the installed skill.
