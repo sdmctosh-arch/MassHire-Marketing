@@ -74,7 +74,8 @@ A complete job fair request. Nothing is missing, so nothing may be asked.
     after the draft pass. It is not written after each task.
 23. One row is appended to `index.md` with the columns slug, type,
     event_date, status, folder_id, notes: slug
-    `2026-11-12-southbridge-job-fair`, type event, event_date 2026-11-12, and
+    `2026-11-12-southbridge-job-fair`, type `event/job-fair`, event_date
+    2026-11-12, and
     the new folder's id.
 24. Each email draft is created with a campaign `name` of the form
     `Southbridge Job Fair - 2026-11-12 - Email <n>`.
