@@ -1,11 +1,16 @@
 # CLAUDE.md
 
-This repo holds the `masshire-projects` skill (see README.md). Editing here
-changes the skill's source; it does not run a project.
+This repo holds the `masshire-projects` and `masshire-email` skills, one
+plugin each under `plugins/` (see README.md). Editing here changes the
+skills' source; it does not run a project or send an email.
 
 ## Where a rule goes
 
-The skill has three layers. Put each sentence in exactly one:
+Email rules (brand voice, base HTML, subject lines, compliance, Constant
+Contact build steps) live in `masshire-email`. `masshire-projects`'
+`constant-contact-email` component points at it and must not restate it.
+
+`masshire-projects` has three layers. Put each sentence in exactly one:
 
 - `SKILL.md` — universal rules: the run, gates, preflight, storage, concurrency.
 - `playbooks/<type>.md` — what a project type requires: fields, defaults,
@@ -21,9 +26,9 @@ When a rule moves or is superseded, delete the old text in the same change.
 - Run `scripts/validate.py` (or `scripts/package.sh`).
 - A new component must appear in a playbook task table, and every component
   a task table names must exist — the validator checks this.
-- Keep `.claude-plugin/plugin.json`'s description under 500 characters and a
+- Keep each `plugin.json` description under 500 characters and a
   complete sentence; the SKILL.md front-matter description is what triggers
   the skill and must stay under 1024.
-- Bump the plugin `version` and add a CHANGELOG.md line.
+- Bump the changed plugin's `version` and add a CHANGELOG.md line.
 - Do not put tokens or credentials in any file. The Eventbrite token lives in
   Drive; the skill only names where to read it.

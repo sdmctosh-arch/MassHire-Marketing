@@ -7,8 +7,13 @@
   "plugins": [
     {
       "name": "masshire-projects",
-      "source": "./",
+      "source": "./plugins/masshire-projects",
       "description": "MassHire project orchestration: playbooks, components, and a per-project state file."
+    },
+    {
+      "name": "masshire-email",
+      "source": "./plugins/masshire-email",
+      "description": "MassHire Constant Contact email drafting: brand voice, base HTML, subject lines, compliance."
     }
   ]
 }
