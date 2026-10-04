@@ -37,3 +37,17 @@ When a rule moves or is superseded, delete the old text in the same change.
 - Bump the changed plugin's `version` and add a CHANGELOG.md line.
 - Do not put tokens or credentials in any file. The Eventbrite token lives in
   Drive; the skill only names where to read it.
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in GitHub Issues for `sdmctosh-arch/MassHire-Marketing`. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default vocabulary: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: one `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
