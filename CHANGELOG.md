@@ -1,5 +1,24 @@
 # Changelog
 
+## masshire-projects 1.7.0 — 2026-10-04
+
+The project store gets its own file; a fourth layer, `systems/`.
+
+- New `systems/project-store.md` (ADR-0001): where state lives, `index.md`,
+  Drive tool loading, opening and creating a project, writing and renaming
+  files, the project-file schema (header, values, tasks, statuses, body
+  sections), checkpoints, values and staleness, and the repair of old
+  project files. Every sentence of it left SKILL.md or the template.
+- SKILL.md keeps the run; a six-line "Project state" section points at the
+  store. Starting and resuming a project open the store in one step.
+- The template is a skeleton again: front matter and empty sections. The
+  schema prose, the second status list, and the time-format rule are in
+  the store. Every project file created from it is shorter.
+- Repo: CLAUDE.md and README list the fourth layer; the validator requires
+  every `systems/*.md` to be named by SKILL.md, a playbook, or a
+  component. `GLOSSARY.md` is in the prescribed format and gains "project
+  store" and "system". Behavior is unchanged; no scenario changes.
+
 ## masshire-projects 1.6.0 — 2026-10-04
 
 The field contract is declared once and checked.

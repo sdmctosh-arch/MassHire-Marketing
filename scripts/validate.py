@@ -6,7 +6,8 @@ Checks:
   - each plugin.json parses, has a semver version, and a complete description
     (the upload format truncates at 500 chars)
   - each SKILL.md has front matter with a matching name and a description <= 1024 chars
-  - playbooks and templates named in SKILL.md exist
+  - playbooks, templates, and systems named in SKILL.md exist
+  - every systems/*.md is named as `<name>` by SKILL.md, a playbook, or a component
   - every component a playbook task table names exists, and every component
     is named in some playbook task table
   - the field contract: every name a task table's `uses` column holds is a
@@ -102,11 +103,17 @@ for pdir in plugin_dirs:
         elif len(sdesc) > 1024:
             err(f"{rel(skill_md)}: description is {len(sdesc)} chars; keep it <= 1024")
 
-        for ref in re.findall(r"`((?:playbooks|templates)/[\w-]+\.md)`", text):
+        for ref in re.findall(r"`((?:playbooks|templates|systems)/[\w-]+\.md)`", text):
             if not (sdir / ref).exists():
                 err(f"{rel(skill_md)}: references missing {ref}")
 
         components = {p.stem for p in (sdir / "components").glob("*.md")}
+        callers = "\n".join(
+            md.read_text() for d in ("playbooks", "components") for md in (sdir / d).glob("*.md")
+        ) + text
+        for sysmd in sorted((sdir / "systems").glob("*.md")):
+            if f"`{sysmd.stem}`" not in callers and f"systems/{sysmd.name}" not in callers:
+                err(f"{rel(sysmd)}: no SKILL.md, playbook, or component names it")
         for md in sorted(sdir.rglob("*.md")):
             body = md.read_text()
             for other in re.findall(r"the `([\w-]+)` skill", body):

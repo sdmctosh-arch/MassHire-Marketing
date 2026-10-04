@@ -1,30 +1,36 @@
-# Glossary
+# masshire-projects
 
-Domain terms for the `masshire-projects` skill. A term here has one meaning
-in every file; when a file needs a different word, it needs a different
-entry.
+The MassHire Central Career Centers marketing skill: it runs a project from
+request to deliverables with one review gate, and never sends or schedules.
 
-## Copy
+## Language
 
+**Copy**:
 The one public description of a project, written once by the
-`description-copy` task to `descriptions/<project>.html`. Every channel
-(Eventbrite, email, flyer, website, social) takes from it and writes no fact
-it does not hold. Also a value: `copy` in the project file's values block is
-the file's Drive id, so a redraft marks every taker stale.
-_Avoid_: description (that is Eventbrite's field), text, blurb.
+`description-copy` task; every channel takes from it and writes no fact it
+does not hold. Also the `copy` value, which a redraft changes so every taker
+goes stale.
+_Avoid_: description (Eventbrite's field), text, blurb
 
-## Part
+**Part**:
+One of the six named blocks of the copy, in order: headline, summary,
+details, audience, bring, body. A channel takes a part by name; it never
+re-cuts the copy by judgement.
+_Avoid_: section, field
 
-One of the six named blocks of the copy, in order: `headline`, `summary`,
-`details`, `audience`, `bring`, `body`. Each is a `<div data-part="…">` with
-no visible heading. A channel takes a part by name; it never re-cuts the
-copy by judgement.
-_Avoid_: section, field.
-
-## Gap marker
-
+**Gap marker**:
 The text written into the copy where a missing Required fact goes, exactly
 `[<fact> — awaiting your answer]`. It is not a fact: nothing is guessed
-beside it or derived from it. Filling the fact redrafts the copy, and no
-public item may ever contain the marker text.
-_Avoid_: placeholder, TODO.
+beside it or derived from it, and no public item may contain it.
+_Avoid_: placeholder, TODO
+
+**Project store**:
+The Google Drive folder tree that holds every project file and the index,
+and the one set of rules for opening, creating, writing, filling, and
+renaming a project. The Cowork filesystem holds nothing between sessions.
+_Avoid_: storage, Drive (when the rules are meant, not the service)
+
+**System**:
+A skill layer: how a system that is not one task is used, shared by every
+task that touches it (`systems/<system>.md`). The project store is one.
+_Avoid_: service, integration, backend

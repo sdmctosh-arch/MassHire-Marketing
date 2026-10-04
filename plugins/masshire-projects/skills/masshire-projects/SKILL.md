@@ -139,138 +139,30 @@ Google Drive failing, or the Eventbrite token file missing.
 
 Re-run a single check only if that connector errors mid-project.
 
-## Storage contract
+## Project state
 
-All project state lives in Google Drive. The Cowork filesystem resets between
-sessions and holds nothing. **Never run `find` or `ls` looking for project
-files, and never full-text search Drive for a project.**
-
-```
-MassHire Projects/                 id 1AczGC82kIJlLGGUHy59hgJ9Emm74Nkr-
-  index.md                         registry of every project — read this first
-  masshire-projects/               id 1SdRqj_wUMgolxLq-RMuFBUQpa7OgD590
-    eventbrite-token.txt           shared credentials, not project state
-    templates/jobseeker-email.html the email base HTML (see `constant-contact-email`)
-  <slug>/                          one folder per project
-    project.md                     the project file, single source of truth
-    descriptions/                  the approved copy, one .html per project
-    campaigns/                     email draft copies
-    social/                        social post drafts
-    flyer/                         QR files and flyer exports
-    drafts/                        subagent output
-```
-
-Slug format: `YYYY-MM-DD-kebab-case-name`. The date is the event date (for a
-training: the date the project starts).
-
-### index.md
-
-One table, one row per project, newest first:
-
-```
-| slug | type | event_date | status | folder_id | notes |
-```
-
-`type` is the playbook and, for events, the kind (`event/job-fair`,
-`training`). `status` mirrors the project file's status and is updated in
-the same write whenever that status changes. `notes` holds an old slug after
-a rename, and nothing else routine.
-
-### Finding a project
-
-1. Read `index.md` and take the `folder_id` from the project's row.
-2. List that folder: `parentId = '<folder_id>'`, with
-   `excludeContentSnippets: true`.
-
-If the project is not in `index.md`, search by title, never by content:
-`title contains '<slug>' and mimeType = 'application/vnd.google-apps.folder'`.
-Then add the missing row to `index.md` before going further.
-
-`fullText contains` returns every past project with a multi-kilobyte snippet
-attached to each. It is never the right call.
-
-### Writing a file to Drive
-
-Always pass both of these on `create_file`:
-
-```
-contentMimeType: "text/markdown"          (or "text/html" for descriptions/)
-disableConversionToGoogleType: true
-```
-
-Without both, Drive converts the file to a Google Doc and the next read loses
-the YAML front matter, the headers, and the table pipes. If you open a
-`project.md` whose `mimeType` is `application/vnd.google-apps.document`, fix it
-silently before doing anything else: rewrite it as `text/markdown`, verify the
-new file reads back correctly, then trash the Doc.
-
-Read a file once per session. If you already have its content, do not
-re-download it in another format.
-
-### Changing a file, and changing a slug
-
-The Drive connector has no tool that rewrites a file's contents — `update_file`
-changes metadata only. To edit a stored file: `create_file` the full new
-version at the same path, verify it reads back, then `trash_file` the old id.
-Never leave both in place.
-
-When the event date turns out to be wrong, the slug is wrong with it. Rename
-the folder with `update_file`, correct the `project:` and `event_date:` header,
-and fix the `index.md` row in the same pass. Note the old slug in `index.md`.
-
-### Tool loading
-
-Load Drive tools in one `tool_search` call covering `search_files`,
-`download_file_content`, `create_file`, `update_file`, and `trash_file`. Load
-each other connector's tools in one call when its first task starts.
+All state lives in Google Drive, in the project file. `systems/project-store.md`
+is the only place that says how it is opened, created, written at
+checkpoints, filled (and what goes stale), renamed, and indexed. Read it
+before the first Drive call of a session. Load each other connector's tools
+in one call when its first task starts.
 
 ## Starting a project
 
-1. Load the Drive tools; read `index.md`.
+1. Open the store (`project-store`): load the Drive tools, read `index.md`.
 2. Read the playbook for the project type: `playbooks/<type>.md`.
 3. Run Preflight.
 4. If the playbook lists an `existing-check` task, run it now, so the slug
    and folder use the live system's values.
-5. Create the Drive folder `<slug>/` under `MassHire Projects`, and write
-   `templates/project-file.md` into it as `project.md`. Append the project's
-   row to `index.md`.
-6. Fill every field from the playbook's field table. Facts more than one task
-   uses go in the `values` block; the rest go in FACTS, each with its source.
+5. Create the project (`project-store`): the folder, `project.md` from the
+   template, the `index.md` row.
+6. Fill every field from the playbook's field table, into the `values` block
+   or FACTS as the store says.
 7. Write the task list: only in-scope tasks, with conditional `needs`
    resolved; record the existing-check result on its task, `done`.
 8. Run the draft pass: every task whose `needs` are done. Use subagents for
    independent drafts (copy, emails, social) where it saves time.
 9. Present the review packet. Set project status `review`.
-
-## The project file
-
-- Only the main thread writes to it. Every write costs three Drive calls
-  (create, verify, trash), so it is written at checkpoints, not after every
-  task:
-  1. after intake (fields, task list, preflight);
-  2. once after the draft pass, with every task's status and output, just
-     before the review packet;
-  3. after each execute action, so a failure part-way is on record;
-  4. at handoff, and whenever the operator's message changes a value.
-
-  Between checkpoints, keep the changes in the turn. If a session ends
-  between checkpoints, the next one finds the drafts already made by the
-  "search before you create" rule, so nothing is created twice.
-- Task statuses: `todo`, `blocked` (name the missing fact in `blocked_by`),
-  `draft`, `approved`, `done`, `skipped`, `stale`.
-- Project statuses: `intake`, `review`, `executing`, `handoff`, `closed`.
-- **Resolve conditional needs at intake.** Drop every `needs` entry whose task
-  is out of scope for this project. A `needs` pointing at a task that is not
-  in the file blocks that task forever.
-- **Values and staleness.** Each task lists the values it uses in `uses`.
-  When a value changes or an empty value is filled: update the block, write a
-  LOG line, and mark every task that uses it `stale` if it was draft,
-  approved, or done. Redraft stale drafts before the review packet. A stale
-  published item is corrected only with the operator's approval. `needs`
-  means only "which tasks finish first"; staleness comes from `uses`.
-- There are no due dates and no scheduled wakes. The project moves only when
-  the operator sends a message.
-- When many small edits have accumulated, rewrite the file in full.
 
 ## Copy
 
@@ -346,11 +238,8 @@ session, and check in-flight project files against it.
 | Event (job fair, recruitment, hiring, webinar, workshop) | `playbooks/event.md` |
 | Training promotion | `playbooks/training-promotion.md` |
 
-A project file with `type: job-fair` is an `event` with `event_kind:
-job-fair`; fix its header when it is next opened. A project file with
-`campaigns`, `notice_days`, `send_weekday`, `wake`, or `due` fields, a
-`marketing-plan` task, or a `freeze-read` task was made by the old version of
-this skill: delete those fields and tasks when it is next opened.
+Project files made by older versions of this skill are repaired on open by
+the rules in `project-store`.
 
 Job alerts, weekly newsletter, job board update, and employer emails are not
 written yet. Do not improvise one; run the project by hand and record the
@@ -367,15 +256,14 @@ sends or schedules one.
 Trigger: "approve", "approve, but …", an answer to a review question, "resume
 X", "status on X". Do exactly these steps, in order. Do not explore first.
 
-1. Load the Drive tools in one `tool_search` call.
-2. Read `index.md`. Get the project's `folder_id`.
-3. List the project folder and read `project.md`. Once.
-4. Read only the components for tasks that are not `done` or `skipped`.
-5. Run Preflight for the connectors those remaining components need.
-6. Act on the message: an approval runs the execute pass; changes are applied,
+1. Open the project (`project-store`): Drive tools, `index.md`, the folder,
+   `project.md`, once.
+2. Read only the components for tasks that are not `done` or `skipped`.
+3. Run Preflight for the connectors those remaining components need.
+4. Act on the message: an approval runs the execute pass; changes are applied,
    then execute runs; an answer fills a value and finishes the draft pass;
    a status request gets three lines (what is done, what is waiting, on whom).
-7. Write one LOG row for the resume plus any status that changed, in one
+5. Write one LOG row for the resume plus any status that changed, in one
    write.
 
 ## Closing a project
@@ -383,4 +271,5 @@ X", "status on X". Do exactly these steps, in order. Do not explore first.
 Trigger: the operator says "close X". Confirm the event date has passed.
 Move every deliverable into the project folder. Move each DECISIONS row that
 is not a project fact to its home file and delete it from the project file.
-Set the project file status to `closed` and the `index.md` row to `closed`.
+Set the project status to `closed` (`project-store` mirrors it to
+`index.md`).

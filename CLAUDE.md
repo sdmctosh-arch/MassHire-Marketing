@@ -14,13 +14,17 @@ Copy rules (the parts, voice, the gap marker, content by kind) live in
 compliance, Constant Contact tool facts) live in
 `components/constant-contact-email.md`.
 
-The skill has three layers. Put each sentence in exactly one:
+The skill has four layers (ADR-0001). Put each sentence in exactly one:
 
-- `SKILL.md` — universal rules: the run, gates, preflight, storage, concurrency.
+- `SKILL.md` — universal rules: the run, gates, preflight, concurrency.
 - `playbooks/<type>.md` — what a project type requires: fields, defaults,
   task list, execute list, operator actions.
 - `components/<task>.md` — how one task is done in one system: tool facts,
   ids, API calls, checks.
+- `systems/<system>.md` — how a system that is not one task is used, shared
+  by every task that touches it: ids, call shapes, read and write rules.
+  `project-store` (Drive) is one. A system file is named by SKILL.md, a
+  playbook, or a component — the validator checks this.
 - Project facts never go in this repo; they live in the project file in Drive.
 
 When a rule moves or is superseded, delete the old text in the same change.
