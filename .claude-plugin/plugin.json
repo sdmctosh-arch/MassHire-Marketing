@@ -1,0 +1,9 @@
+{
+  "name": "masshire-projects",
+  "version": "1.0.0",
+  "description": "Orchestrate MassHire multi-step marketing projects (job fairs, recruitment and hiring events, webinars, workshops, and training promotions) from an incoming request to finished deliverables, with one review gate.",
+  "author": {
+    "name": "Steven",
+    "email": "sdmctosh@gmail.com"
+  }
+}

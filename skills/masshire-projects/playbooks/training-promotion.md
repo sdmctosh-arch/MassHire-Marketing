@@ -1,0 +1,79 @@
+# Playbook — Training Promotion
+
+A training program that MassHire promotes. The deliverables are WordPress
+entries, Constant Contact email drafts, and a social post draft.
+
+## Fields
+
+Source key as in `playbooks/event.md`.
+
+| Field | Source and rule |
+|---|---|
+| `training_link` | **Required**: the submitted link. |
+| `path` | **Derived**: open the submitted link. A page with a full program description AND a way to apply → **A**. An application form with no program information → **B**. State the result and the reason as an assumption. |
+| `training_title` | **Request**; else **Lookup** from the linked page. |
+| `organization` | **Request**; else **Lookup** from the linked page. |
+| `eligibility` | **Request** or **Lookup**; omitted if neither. |
+| `format`, `location`, `schedule` | **Request** or **Lookup**; omitted if neither. |
+| `cost` | **Request** or **Lookup**. Written as "no cost" only when a source says it is free. |
+| `application_deadline` | **Request** or **Lookup**; used in copy only. |
+| `training_start` | **Request** or **Lookup**; used in copy only. |
+| `public_link` | **Derived**. Path A: `training_link`. Path B: the training post's permalink, read from the draft's sample permalink in the draft pass and confirmed after publish. |
+| `training-category` term | **Derived**: match an existing term on meaning; a new term is listed in the review packet and created at execute. |
+| Directorist category and location terms | **Derived**, the same way. |
+| Listing search text, excerpt | **Written**. |
+
+## Defaults
+
+| Setting | Default |
+|---|---|
+| Eventbrite, Zoho, redirects | None. |
+| Post type for a training page (path B) | `training` |
+| Directorist `_directory_type` | `390` |
+| Email drafts | 2: announce, last call |
+| Social post drafts | 1 |
+| Flyer | None. No training template exists. |
+
+## The two paths
+
+| Path | The link points to | Build |
+|---|---|---|
+| A | A landing page with a full description AND an application | Directorist listing only. Its `_website` is the submitted link. |
+| B | An application form only, with no program information | A `training` post, then a Directorist listing whose `_website` is the training post permalink. |
+
+Real example of path B: training post 56574 and listing 56577.
+
+## Task list
+
+| # | Task | Component | needs | uses |
+|---|---|---|---|---|
+| 1 | description-copy | Copy rules in SKILL.md | — | all facts |
+| 2 | training-post (path B only) | `training-post` | 1 | training_link, organization |
+| 3 | directorist-listing | `directorist-listing` | 2 on path B; 1 on path A | public_link |
+| 4 | training-emails | `constant-contact-email` | 1; 2 on path B | public_link |
+| 5 | facebook-post | `facebook-post-draft` | 1; 2 on path B | public_link |
+| 6 | review-packet | SKILL.md | all above | — |
+| 7 | execute | Execute list below | 6 approved | — |
+
+## Execute list
+
+1. Create any new taxonomy term listed in the review packet.
+2. Path B: publish the training post. Confirm its permalink equals
+   `public_link`; if not, update `public_link` (staleness marks the listing,
+   emails, and social post stale — correct each before step 3).
+3. Publish the Directorist listing.
+4. Report, and write the handoff list to STATUS.
+
+## Rules for this project type
+
+- **The listing is never the destination.** Directorist is for site search and
+  browsing. The emails and the social post use `public_link`.
+- **Path B order is fixed at execute.** The training post publishes before
+  the listing.
+- **Eligibility is public.** Stated eligibility requirements go in the
+  training post description.
+
+## Operator actions
+
+After the execute pass: attach the "Email List" segment and schedule each
+email draft in Constant Contact; schedule the social draft.
