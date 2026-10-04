@@ -124,7 +124,7 @@ the connectors that playbook's in-scope tasks need.
 | Eventbrite API v3 | `eventbrite-event`, `existing-check` | `GET https://www.eventbriteapi.com/v3/users/me/` with the Drive token |
 | Constant Contact | `constant-contact-email`, `facebook-post-draft` | `retrieve_email_addresses` |
 | Canva | `flyer-from-template` | `search-brand-templates` — the template the flyer needs is in the result |
-| Zoho CRM | `zoho-job-fair` — job fairs only | `getModules` |
+| Zoho CRM | `zoho-job-fair`, `existing-check` — job fairs only | `getModules` |
 
 Every check is read-only. Report one line per connector:
 
@@ -152,8 +152,8 @@ in one call when its first task starts.
 1. Open the store (`project-store`): load the Drive tools, read `index.md`.
 2. Read the playbook for the project type: `playbooks/<type>.md`.
 3. Run Preflight.
-4. If the playbook lists an `existing-check` task, run it now, so the slug
-   and folder use the live system's values.
+4. Run `existing-check` now, so the slug and folder use the live systems'
+   values and every creating task knows what already exists.
 5. Create the project (`project-store`): the folder, `project.md` from the
    template, the `index.md` row.
 6. Fill every field from the playbook's field table, into the `values` block
@@ -202,14 +202,16 @@ for that value, and continue with the tasks it unblocked.
 
 - **Verify a value against the system that holds it.** When a value names a
   date, time, venue, or link that also exists in a published system, check it
-  there. The `existing-check` task does this at intake for events. The
+  there. The `existing-check` task does this at intake. The
   request is what was asked for; the published system is what exists.
 - Read the tool before you write input for it: the script, the README, or one
   working command first.
 - Never assume a plugin, module, or feature is active. Check.
 - The system writes no message to staff or any other person. What the
   operator needs is in the review packet and the STATUS block.
-- Search before you create, in every external system.
+- Search before you create. `existing-check` searches every system the
+  playbook creates in, once, at intake; a component creates only where that
+  record says `none`.
 - **A write whose result you did not see is not a failed write.** When a call
   times out, errors after sending, or returns something you cannot read, never
   repeat it. Search the target system for the object you were creating. Act on

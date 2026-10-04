@@ -24,6 +24,12 @@ The text written into the copy where a missing Required fact goes, exactly
 beside it or derived from it, and no public item may contain it.
 _Avoid_: placeholder, TODO
 
+**Existing-check**:
+The intake task that searches every system the playbook creates in and
+records, per target, the matched object or none. The live system is what
+exists; a creating task never searches on its own.
+_Avoid_: dedupe, lookup (that is a field source)
+
 **Project store**:
 The Google Drive folder tree that holds every project file and the index,
 and the one set of rules for opening, creating, writing, filling, and

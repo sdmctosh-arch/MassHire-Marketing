@@ -45,13 +45,14 @@ Source key as in `playbooks/event.md`.
 
 | # | Task | Component | needs | uses |
 |---|---|---|---|---|
-| 1 | description-copy | `description-copy` | — | all facts |
-| 2 | training-post (path B only) | `training-post` | 1 | copy, training_link, organization |
-| 3 | directorist-listing | `directorist-listing` | 2 on path B; 1 on path A | copy, public_link |
-| 4 | training-emails | `constant-contact-email` | 1; 2 on path B | copy, public_link |
-| 5 | facebook-post | `facebook-post-draft` | 1; 2 on path B | copy, public_link |
-| 6 | review-packet | SKILL.md | all above | — |
-| 7 | execute | Execute list below | 6 approved | — |
+| 1 | existing-check | `existing-check` | — | training_title |
+| 2 | description-copy | `description-copy` | — | all facts |
+| 3 | training-post (path B only) | `training-post` | 1, 2 | copy, training_link, organization |
+| 4 | directorist-listing | `directorist-listing` | 1; 3 on path B; 2 on path A | copy, public_link |
+| 5 | training-emails | `constant-contact-email` | 2; 3 on path B | copy, public_link |
+| 6 | facebook-post | `facebook-post-draft` | 2; 3 on path B | copy, public_link |
+| 7 | review-packet | SKILL.md | all above | — |
+| 8 | execute | Execute list below | 7 approved | — |
 
 ## Execute list
 

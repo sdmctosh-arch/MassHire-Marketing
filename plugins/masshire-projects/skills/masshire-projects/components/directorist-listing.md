@@ -29,11 +29,11 @@ Real example: listing 56577, whose `_website` points at training post 56574.
 
 ## Process
 
-1. Search `at_biz_dir` for the same title first.
-2. On path B, confirm the training post draft exists and its sample
+1. On path B, confirm the training post draft exists and its sample
    permalink is in `public_link` before creating the listing.
-3. Create as a draft, set the meta and both excerpt places, assign the terms.
-4. Before proposing a new taxonomy term, list the existing terms and match on
+2. If `existing-check` recorded a matching listing, update it; otherwise
+   create as a draft. Set the meta and both excerpt places, assign the terms.
+3. Before proposing a new taxonomy term, list the existing terms and match on
    meaning, not on exact spelling. A near-duplicate term splits browsing.
 
 ## Execute

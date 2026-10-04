@@ -30,11 +30,10 @@ recurring. Leave `flyer` empty (trainings have no flyer).
 
 ## Process
 
-1. Search `training` for the same title before creating. Never create a second
-   post for the same program.
-2. Create the post as a draft with a `post_name` slug from the title; set
-   the fields and the category term.
-3. Read the draft's sample permalink (`get_sample_permalink`) and write it
+1. If `existing-check` recorded a matching `training` post, update it with
+   the fields below. Otherwise create the post as a draft with a `post_name`
+   slug from the title; set the fields and the category term.
+2. Read the draft's sample permalink (`get_sample_permalink`) and write it
    to the values block as `public_link`. Read the preview link for the
    review packet.
 
@@ -46,7 +45,7 @@ tasks).
 
 ## Checks
 
-- [script] No existing training post with this title.
+- [script] Exactly one `training` post with this title after the run.
 - [script] `button_text` is `Apply`.
 - [script] `training_category` is set to exactly one term.
 - [script] No `awaiting your answer` in any field.

@@ -16,7 +16,8 @@ the build order, and that cost is not invented.
   Application — QCC Workforce Development" with fields for name, phone,
   email, and "Why are you interested?". The page has no program description,
   schedule, location, or cost.
-- WordPress: `training-category` terms include "Healthcare". Directorist
+- WordPress: no `training` post and no Directorist listing with a similar
+  title. `training-category` terms include "Healthcare". Directorist
   categories include "Healthcare Training"; locations include "Worcester".
 - Creating a `training` draft returns sample permalink
   https://masshirecentralcc.com/training/cna-training/.
@@ -43,3 +44,6 @@ the build order, and that cost is not invented.
    given).
 10. The Directorist listing has a category term and no location term (no
     source gives a location), and this does not block publishing it.
+11. existing-check runs at intake, searches `training` posts and Directorist
+    listings by title, and records `none` for each; neither training-post
+    nor directorist-listing runs a search of its own.

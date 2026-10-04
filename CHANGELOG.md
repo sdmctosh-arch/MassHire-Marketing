@@ -1,5 +1,24 @@
 # Changelog
 
+## masshire-projects 1.8.0 — 2026-10-04
+
+One live-system check.
+
+- `existing-check` searches every target the chosen playbook creates in,
+  at intake, and records per target `matched: <id>` or `none`: Eventbrite
+  events, WordPress event posts, Zoho `Job_Fairs`, redirect paths (the
+  slug candidates, by `vanity-redirect`'s rules and path check), and for
+  trainings the `training` post and the Directorist listing.
+- Components stop searching on their own: `zoho-job-fair`,
+  `training-post`, and `directorist-listing` read the record and update or
+  create; `vanity-redirect` keeps the path check as a tool fact and its
+  execute-time recheck, and has no draft step of its own.
+- The training playbook gains an `existing-check` task (1); the rest
+  renumber. SKILL.md's "search before you create" names its owner.
+- Tests: `training-path-b` World says no training post or listing exists
+  and asserts the check ran for both; `job-fair-complete` asserts a result
+  per target. `GLOSSARY.md` gains "existing-check".
+
 ## masshire-projects 1.7.0 — 2026-10-04
 
 The project store gets its own file; a fourth layer, `systems/`.

@@ -88,3 +88,7 @@ A complete job fair request. Nothing is missing, so nothing may be asked.
 27. The `copy` value holds the Drive id of the description file, and every
     task that takes from the copy (eventbrite, flyer, wordpress-event,
     jobseeker-emails, facebook-posts) lists `copy` in `uses`.
+28. existing-check records a result for every target: Eventbrite `none`,
+    WordPress event `none`, Zoho `none`, and the redirect slugs with their
+    rejected candidates; it is the only task that searches a live system
+    before the draft pass.
