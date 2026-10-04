@@ -29,7 +29,10 @@ file or any file in the workspace.
    matching the values-block venue; create it
    (`POST /organizations/<org_id>/venues/`) only if not found. For an online
    event, set `online_event: true` and no venue.
-3. Create the draft event (`POST /organizations/<org_id>/events/`) with
+3. If existing-check recorded a matching Eventbrite event, use that event:
+   update it (`POST /events/<event_id>/`) with the values below instead of
+   creating one, and build only the ticket classes and questions it lacks.
+   Otherwise create the draft event (`POST /organizations/<org_id>/events/`) with
    `status: draft`, the values-block date/time, the matched venue ID, and
    the copy from `descriptions/<project>.html` as the HTML
    description.
@@ -111,9 +114,19 @@ for the pattern (`POST /events/<ref_event_id>/copy/`) instead of building
 from scratch. The copy carries the ticket classes, the questions, and their
 scoping. Then update the copy to this project: name, dates and times,
 venue, description, each ticket class's sales window, and status `draft`.
+Then bring its tickets and questions in line with this file: delete any
+ticket class this event's pattern does not have (the walk-in `Admission`
+ticket when walk-ins are out of scope or the event is online); scope
+questions 2–7 to `Registration` (or every slot ticket) and off `Admission`;
+make 2–6 required and 7 optional.
 Run every check below on the copy; a copy that keeps the reference event's
 dates or name is a failed check. Record in the task that the event was
 copied, and from which reference event.
+
+If this run created a draft event before the refusal, delete that draft
+(`DELETE /events/<event_id>/`) once the copy passes its checks, so only one
+draft remains, and record its id as deleted in the task. Never delete an
+event this run did not create, such as one existing-check matched.
 
 ## Order confirmation
 

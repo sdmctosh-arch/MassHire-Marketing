@@ -1,7 +1,8 @@
 # Component — existing-check
 
-Access: read-only. Runs first, at intake, so a date or venue that disagrees
-with a live system is caught before anything is drafted.
+Access: read-only. Runs at intake, after Preflight and before the project
+folder is created, so a date or venue that disagrees with a live system is
+caught before the slug or anything else is made from it.
 
 ## Process
 
@@ -22,8 +23,11 @@ with a live system is caught before anything is drafted.
   component that would create that object uses it instead of creating a new
   one ("search before you create").
 - A match that disagrees: the live system is what exists. Use its value,
-  record the conflict in FACTS, and put it at the top of the review packet as
-  an assumption to confirm.
+  record the conflict in FACTS, and list it first under Assumptions in the
+  review packet, naming both values ("Assumed: 2026-11-20, the date already
+  in Eventbrite; the request said 2026-11-19"). "Approve" accepts it;
+  "approve, but use the 19th" overrides it, and the override updates the
+  matched object at execute.
 
 ## Checks
 

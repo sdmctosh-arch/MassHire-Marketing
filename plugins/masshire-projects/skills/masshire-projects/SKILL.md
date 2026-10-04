@@ -88,7 +88,6 @@ something major is missing. Major means a public action would put out
 something wrong or broken:
 
 - a Required fact is still missing;
-- an existing-check conflict has not been confirmed;
 - the item about to be published failed its own checks (for example, the
   Eventbrite event is missing its tickets or order-form questions);
 - a link would point at nothing (a redirect whose destination is empty).
@@ -234,16 +233,18 @@ each other connector's tools in one call when its first task starts.
 1. Load the Drive tools; read `index.md`.
 2. Read the playbook for the project type: `playbooks/<type>.md`.
 3. Run Preflight.
-4. Create the Drive folder `<slug>/` under `MassHire Projects`, and write
+4. If the playbook lists an `existing-check` task, run it now, so the slug
+   and folder use the live system's values.
+5. Create the Drive folder `<slug>/` under `MassHire Projects`, and write
    `templates/project-file.md` into it as `project.md`. Append the project's
    row to `index.md`.
-5. Fill every field from the playbook's field table. Facts more than one task
+6. Fill every field from the playbook's field table. Facts more than one task
    uses go in the `values` block; the rest go in FACTS, each with its source.
-6. Write the task list: only in-scope tasks, with conditional `needs`
-   resolved.
-7. Run the draft pass: every task whose `needs` are done. Use subagents for
+7. Write the task list: only in-scope tasks, with conditional `needs`
+   resolved; record the existing-check result on its task, `done`.
+8. Run the draft pass: every task whose `needs` are done. Use subagents for
    independent drafts (copy, emails, social) where it saves time.
-8. Present the review packet. Set project status `review`.
+9. Present the review packet. Set project status `review`.
 
 ## The project file
 

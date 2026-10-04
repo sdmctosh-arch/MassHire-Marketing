@@ -1,5 +1,30 @@
 # Changelog
 
+## masshire-projects 1.4.0 — 2026-10-04
+
+Fixes from the whole-repo spec review.
+
+- An existing-check conflict is an assumption, listed first under
+  Assumptions with both values: "approve" accepts the live value, "approve,
+  but …" overrides it. It no longer blocks publishing.
+- existing-check runs at intake, before the project folder is created, so
+  the slug and folder use the live value. The Eventbrite and WordPress
+  components update a matched object instead of creating a second one.
+- The copy-the-reference fallback also deletes ticket classes the pattern
+  lacks (the walk-in ticket for online events), scopes questions 2–7 to
+  Registration, and makes question 7 optional. A draft the run created
+  before the refusal is deleted once the copy passes its checks.
+- `wordpress-event` is created as soon as its needs are done; the draft
+  pass is not reordered to run the flyer first.
+- `create_email_campaign` is called with the campaign `name`.
+- The Facebook profile id no longer points to an `index.md` section that
+  does not exist.
+- Repo: `validate.py` fails on a component no playbook task table names.
+  Tests: new `eventbrite-copy-fallback` scenario; assertions for the
+  exact-path slug check, the project-file checkpoints, the `index.md` row,
+  copied questions shown as information, the campaign name, the conflict as
+  an assumption, and unaffected actions running past a major block.
+
 ## masshire-projects 1.3.4 — 2026-10-04
 
 - Order-form question 7: MassHire Job Seeker ID number, short text,

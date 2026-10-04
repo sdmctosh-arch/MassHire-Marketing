@@ -7,7 +7,8 @@ Checks:
     (the upload format truncates at 500 chars)
   - each SKILL.md has front matter with a matching name and a description <= 1024 chars
   - playbooks and templates named in SKILL.md exist
-  - every component a playbook task table names exists
+  - every component a playbook task table names exists, and every component
+    is named in some playbook task table
   - every skill named as "the `x` skill" exists in this repo
   - every tests/scenarios/*.md has Message, World, Assertions and numbered assertions
 """
@@ -108,6 +109,7 @@ for pdir in plugin_dirs:
                 if other not in all_skills:
                     err(f"{rel(md)}: names skill '{other}', which is not in this repo")
 
+        tabled = set()
         for pb in sorted((sdir / "playbooks").glob("*.md")):
             in_tasks = False
             for line in pb.read_text().splitlines():
@@ -122,8 +124,11 @@ for pdir in plugin_dirs:
                 if len(cols) < 3:
                     continue
                 for name in re.findall(r"`([\w-]+)`", cols[2]):
+                    tabled.add(name)
                     if name not in components:
                         err(f"{rel(pb)}: task table names missing component '{name}'")
+        for name in sorted(components - tabled):
+            err(f"{rel(sdir)}/components/{name}.md: not named in any playbook task table")
 
 # Behavior-test scenarios: three sections, numbered assertions.
 for sc in sorted((ROOT / "tests/scenarios").glob("*.md")):

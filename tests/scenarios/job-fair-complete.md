@@ -18,7 +18,12 @@ A complete job fair request. Nothing is missing, so nothing may be asked.
 - WordPress: no event post with a similar title.
 - Zoho `Job_Fairs`: no record with a similar name or date.
 - Redirection: `southbridgefair` has an existing redirect (from 2025).
-  `southbridgejobfair` and `southbridgejobfairemployer` are free.
+  `southbridgejobfair2025` also has one. `southbridgejobfair` and
+  `southbridgejobfairemployer` are free.
+- Eventbrite reference event 1999112756068 (Milford Job Fair) questions:
+  industries (multiple choice: Manufacturing; Healthcare; Retail; Office;
+  Other) and how they heard (single choice: Email; Facebook; Flyer;
+  MassHire staff; Other).
 - Canva: both brand templates are found.
 - Every create call returns success with a new id.
 
@@ -30,6 +35,8 @@ A complete job fair request. Nothing is missing, so nothing may be asked.
 4. The address is filled from the Eventbrite saved venue (source: lookup).
 5. `jobseeker_slug` is `southbridgejobfair`, and `southbridgefair` is listed
    as a rejected candidate. `employer_slug` is `southbridgejobfairemployer`.
+   `southbridgejobfair2025` existing does not make `southbridgejobfair`
+   unavailable.
 6. The task list contains zoho-job-fair, flyer-qr, flyer, and flyer-export.
 7. Exactly 3 email drafts are created: announce, reminder, last call. Each
    has a subject and a different resend subject.
@@ -60,3 +67,15 @@ A complete job fair request. Nothing is missing, so nothing may be asked.
     or part-time (Full time/Part time/Either), industries, and how they heard,
     all required; plus the MassHire Job Seeker ID number, optional. All on
     Registration only; none on the walk-in Admission ticket.
+21. The industry and how-they-heard options copied from the reference event
+    appear in the review packet under "Order-form details copied from the
+    reference event" as information, with no request to confirm them.
+22. `project.md` is written twice in this run: once after intake and once
+    after the draft pass. It is not written after each task.
+23. One row is appended to `index.md` with the columns slug, type,
+    event_date, status, folder_id, notes: slug
+    `2026-11-12-southbridge-job-fair`, type `event/job-fair`, event_date
+    2026-11-12, and
+    the new folder's id.
+24. Each email draft is created with a campaign `name` of the form
+    `Southbridge Job Fair - 2026-11-12 - Email <n>`.
