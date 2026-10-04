@@ -1,5 +1,14 @@
 # Changelog
 
+## masshire-projects 1.3.3 — 2026-10-04
+
+- Eventbrite order-form questions stored: cell phone (built-in), city or
+  town, military service, full-time or part-time, industries, how they
+  heard. All required, on Registration only; the walk-in Admission ticket
+  gets none (the Job Seeker ID question is gone). The industry options and
+  the "how did you hear" type and options are still copied from the
+  reference event until recorded.
+
 ## masshire-projects 1.3.2 — 2026-10-04
 
 - Order-form questions copied from the reference event are shown in the

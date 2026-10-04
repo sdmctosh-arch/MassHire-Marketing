@@ -77,27 +77,31 @@ Reference: Worcester Job Fair, event `2000642954934`.
 
 ## Order-form questions
 
-Six questions, a fixed set with fixed option lists. Create them with
-`POST /events/<event_id>/questions/`. Never delete a question; scope it to a
-ticket class. Only the Job Seeker ID question shows on the walk-in
-`Admission` ticket. The questions scoped to `Registration` in the general
-pattern are scoped to every slot ticket in the slot pattern. Question 6
-measures the marketing channels; its options never change between events.
+Six questions, a fixed set. Every question is required, and every question
+is shown on the `Registration` ticket (in the slot pattern, on every slot
+ticket). The walk-in `Admission` ticket gets none. Never delete a question.
+Question 6 measures the marketing channels; its options never change between
+events.
 
-| # | Question text | Type | Required | Options | Ticket classes |
-|---|---|---|---|---|---|
-| 1 | not recorded | | | | Registration (slot tickets) |
-| 2 | not recorded | | | | Registration (slot tickets) |
-| 3 | not recorded | | | | Registration (slot tickets) |
-| 4 | not recorded | | | | Registration (slot tickets) |
-| 5 | Job Seeker ID (exact wording not recorded) | | | | Registration (slot tickets), Admission |
-| 6 | How did you hear... (exact wording and options not recorded) | | | | Registration (slot tickets) |
+| # | Question text | Type | Options |
+|---|---|---|---|
+| 1 | Cell phone | Eventbrite's built-in contact field, not a custom question: turn it on and make it required | — |
+| 2 | What city or town do you live in? | Short text | — |
+| 3 | Have you served in the military? | Single choice | Yes; No |
+| 4 | Are you looking for full-time or part-time work? | Single choice | Full time; Part time; Either |
+| 5 | What industries or fields of work are you interested in? | Multiple choice (check all that apply) | Not recorded yet: copy from the reference event |
+| 6 | How did you hear about this event? | Not recorded yet: copy from the reference event | Not recorded yet: copy from the reference event |
 
-While a row reads "not recorded", copy that question from the reference
-event (`GET /events/<ref_event_id>/questions/`). Show the exact text, type,
-required flag, and options in the review packet under "Order-form questions
-(copied from the reference event)", as information the operator can store
-in this table. It is not a question and asks for no reply.
+Create questions 2–6 with `POST /events/<event_id>/questions/`. Set
+question 1 the way the reference event has it: read the reference event's
+built-in fields (`GET /events/<ref_event_id>/canned_questions/`) and match
+it.
+
+Where a cell reads "not recorded yet", copy it from the reference event
+(`GET /events/<ref_event_id>/questions/`), keeping the options and their
+order exactly. Show what was copied in the review packet under "Order-form
+details copied from the reference event", as information the operator can
+store in this table. It is not a question and asks for no reply.
 
 ## When the API cannot build it
 
@@ -158,8 +162,10 @@ skipping any that repeat a default. The tag list goes in the review packet.
   windows — confirm by reading them back
   (`GET /events/<event_id>/ticket_classes/`), not just from the create
   response.
-- [api] Six questions present; only the Job Seeker ID question on the walk-in
-  `Admission` ticket.
+- [api] Questions 2–6 present, required, on `Registration` (or every slot
+  ticket) and not on `Admission`; the cell phone field is on and required;
+  the options of questions 3–6 match this file or the reference event
+  exactly.
 - [api] `confirmation_message` and `instructions` both equal the standard
   text (`GET /events/<event_id>/ticket_buyer_settings/`).
 - [api] Date, time, and venue (or `online_event`) match the values block.

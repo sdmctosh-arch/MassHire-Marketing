@@ -55,3 +55,7 @@ A complete job fair request. Nothing is missing, so nothing may be asked.
 18. The social draft carries no image.
 19. The WordPress event draft is created in the draft pass; it does not wait
     on the flyer.
+20. The Eventbrite draft gets the stored order-form questions: cell phone
+    (built-in, required), city or town, military service (Yes/No), full-time
+    or part-time (Full time/Part time/Either), industries, and how they heard,
+    all required, on Registration only; none on the walk-in Admission ticket.
