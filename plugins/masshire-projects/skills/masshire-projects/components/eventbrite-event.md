@@ -94,9 +94,10 @@ measures the marketing channels; its options never change between events.
 | 6 | How did you hear... (exact wording and options not recorded) | | | | Registration (slot tickets) |
 
 While a row reads "not recorded", copy that question from the reference
-event (`GET /events/<ref_event_id>/questions/`). Then list the exact text,
-type, required flag, and options in the review packet as "record in
-`eventbrite-event`", so the operator can store them here.
+event (`GET /events/<ref_event_id>/questions/`). Show the exact text, type,
+required flag, and options in the review packet under "Order-form questions
+(copied from the reference event)", as information the operator can store
+in this table. It is not a question and asks for no reply.
 
 ## When the API cannot build it
 

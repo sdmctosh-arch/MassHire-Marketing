@@ -1,5 +1,10 @@
 # Changelog
 
+## masshire-projects 1.3.2 — 2026-10-04
+
+- Order-form questions copied from the reference event are shown in the
+  review packet as information, not as a request to confirm.
+
 ## masshire-projects 1.3.1 — 2026-10-04
 
 - Choices the operator might change are written as assumptions, never as
