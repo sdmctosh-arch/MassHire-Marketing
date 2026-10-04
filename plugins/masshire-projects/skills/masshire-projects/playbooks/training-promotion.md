@@ -28,8 +28,6 @@ Source key as in `playbooks/event.md`.
 | Setting | Default |
 |---|---|
 | Eventbrite, Zoho, redirects | None. |
-| Post type for a training page (path B) | `training` |
-| Directorist `_directory_type` | `390` |
 | Email drafts | 2: announce, last call |
 | Social post drafts | 1 |
 | Flyer | None. No training template exists. |
@@ -41,7 +39,6 @@ Source key as in `playbooks/event.md`.
 | A | A landing page with a full description AND an application | Directorist listing only. Its `_website` is the submitted link. |
 | B | An application form only, with no program information | A `training` post, then a Directorist listing whose `_website` is the training post permalink. |
 
-Real example of path B: training post 56574 and listing 56577.
 
 ## Task list
 

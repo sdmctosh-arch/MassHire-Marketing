@@ -7,7 +7,8 @@ caught before the slug or anything else is made from it.
 ## Process
 
 1. Eventbrite: list the organization's events
-   (`GET /organizations/1772914159203/events/?status=draft,live&order_by=start_desc`)
+   (`GET /organizations/<org_id>/events/?status=draft,live&order_by=start_desc`,
+   the org id from `eventbrite-event`)
    and look for one with a similar name or the same date.
 2. WordPress (`novamira/execute-php`, `get_posts` with `post_status` any, so
    drafts count): search posts of type `event` for a similar title, and read

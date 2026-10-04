@@ -12,8 +12,6 @@ in that order. Tested 2026-09-28.
 | MH Event - Job Fair | `EAHVMCIGhbU` | Job fairs and multi-employer events |
 | MH Event - Job Listings | `EAHVM0kapR4` | Single-employer recruitment and hiring events |
 
-Webinars, workshops, and trainings have no template and get no flyer.
-
 Job Fair fields: `event_name`, `body`, `when_value`, `location`, `address`,
 `cta_url` (text), `cta_qr` (image).
 
@@ -63,8 +61,7 @@ filling. Never hard-code field names from this table into a call.
      the address. The QR carries the Eventbrite URL.
    - `cta_qr`: the `asset_id` from `flyer-qr`.
    - `when_value`, `location`, `address`: from the values block.
-   - `body`: from the copy. Job fair: name the sectors, never employers, and
-     say the registration page will be updated as employers confirm.
+   - `body`: from the copy.
    - Job Listings: `event_type`, `company`, `job_name` from the event name;
      the position rows from `positions`; `partner_logo` from the Canva asset
      lookup. Send an empty string for every field of an unused position row,

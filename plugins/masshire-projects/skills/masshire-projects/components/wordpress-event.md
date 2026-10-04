@@ -33,9 +33,10 @@ if `flyer-export` is done; the event never waits for it.
    "Register as an Employer". If the employer link value is still empty,
    create the event anyway; the value fill marks this task stale and the
    fields are added then.
-4. Set the `event-category` term(s) from the playbook's kind table. Never
-   create a term; a case the table does not cover is flagged in the review
-   packet.
+4. Set the `event-category` term(s) the playbook's kind table names, by these
+   ids: Job Fair 684, Employer Registration 1016, Recruitment Event 973,
+   Virtual Workshop 688, Worcester 685, Southbridge 1009. Never create a
+   term; a case the table does not cover is flagged in the review packet.
 5. For an online event, `location` is `Online` and `address` is empty.
 6. Create the event as soon as this task's `needs` are done. Do not run the
    flyer tasks first to have the PNG ready; the flyer is added later.

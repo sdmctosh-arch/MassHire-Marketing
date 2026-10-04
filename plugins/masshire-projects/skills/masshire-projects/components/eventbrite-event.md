@@ -11,7 +11,7 @@ From the values block: event_date, start_time, end_time, venue, address. From
 the project file:
 `event_kind`, the copy in `descriptions/<project>.html`, the scope
 fields (time slots and slot range, walk-ins), the derived tag list,
-capacity (default 2000), max tickets per order (default 10). An Eventbrite API
+capacity (default under Ticket patterns), max tickets per order (default 10). An Eventbrite API
 token, read from Google Drive (see step 1) — never write it into the project
 file or any file in the workspace.
 
@@ -21,7 +21,8 @@ file or any file in the workspace.
    (id `1Te4ym9f1Io-HFtQ53MzcWJpWZR35owha`, in the `masshire-projects` Drive
    folder under `MassHire Projects`) using `download_file_content`. Fall back
    to `search_files` for `title = 'eventbrite-token.txt'` if the id ever
-   changes. If the file is missing or empty, stop the run and report it — don't guess or reuse an old value. Authenticate requests with
+   changes. If the file is missing or empty, don't guess or reuse an old value
+   (Preflight stops the run). Authenticate requests with
    `Authorization: Bearer <token>`.
 2. Look up the organization ID (`GET /users/me/organizations/`; MassHire
    Central Career Centers is `1772914159203`). For an in-person event, check
@@ -45,7 +46,7 @@ file or any file in the workspace.
 6. Record the event id in the task, and the draft's public URL (the `url`
    field of the create response) as the `jobseeker_link` value. The URL does
    not change on publish (tested). Put the edit URL and the tag list in the
-   review packet; the operator adds the tags to the draft before approving.
+   review packet.
 
 ## Execute
 
@@ -163,8 +164,8 @@ skipping any that repeat a default. The tag list goes in the review packet.
 
 - [constraint: no API write] The public API v3 has no endpoint that writes
   tags (`event.tags` is rejected; `/events/<id>/tags/` does not exist —
-  tested 2026-09-11). The operator adds the tags to the draft in the
-  Eventbrite UI before approving the review packet. Review this rule if Eventbrite adds a write endpoint.
+  tested 2026-09-11); they are added in the Eventbrite UI. Review this rule
+  if Eventbrite adds a write endpoint.
 - Read back at execute:
   `GET /destination/events/?event_ids=<event_id>&expand=tags`. The tags are
   the entries with `prefix` `OrganizerTag`. The destination endpoint does not

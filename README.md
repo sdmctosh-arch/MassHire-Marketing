@@ -22,6 +22,9 @@ plugins/
 tests/
   scenarios/                        behavior tests: message, simulated world, assertions
 .claude/skills/test-skill/          runs the behavior tests ("run the tests" or /test-skill)
+.claude/skills/<other>/             engineering skills copied from mattpocock/skills (not part of the plugin)
+docs/agents/                        issue tracker, triage labels, and domain-doc settings for those skills
+.github/workflows/validate.yml      CI: validate and build the zip on every PR
 scripts/
   validate.py                       structural checks (run before every commit)
   package.sh                        validates, then builds dist/<plugin>-v<version>.zip

@@ -71,9 +71,9 @@ One message, in this order:
 8. Email and social drafts: subject, resend subject, preheader, headline,
    body, CTA line, per draft; social text.
 9. The `judgement` checks from every drafted component, and any flags (text
-   overflow, empty logo frame, preflight failure).
-10. Operator actions before approving (event playbook: add the Eventbrite
-    tags to the draft).
+   overflow, empty logo frame). A preflight failure goes at the top of the
+   packet instead (see Preflight).
+10. Operator actions before approving: the playbook's list.
 11. What execute will do: the list of public actions, in order.
 
 The operator replies "approve", or "approve, but change X". Apply the changes
@@ -112,9 +112,7 @@ the operator's remaining work (the playbook's handoff list).
 | 1 | Private and reversible: a draft, a file, a committed Canva design, a Zoho record | None |
 | 2 | Public: publishing, creating a live redirect | The single review packet |
 
-Separate stops exist only where a playbook or component names one. The one
-universal separate stop: before overwriting a Constant Contact campaign the
-operator edited by hand (the frozen-draft rule), ask.
+Separate stops exist only where a playbook or component names one.
 
 ## Preflight
 
