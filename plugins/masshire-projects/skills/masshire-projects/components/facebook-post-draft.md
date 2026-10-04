@@ -13,7 +13,7 @@ the flyer is a print design, not a social one.
 ## Process
 
 1. Write each post to `social/post-<n>.txt` in the project folder. Text
-   derives from the copy; do not write new event facts. Short, one link,
+   derives from the copy's `summary` part; do not write new event facts. Short, one link,
    plain language. No hashtags.
 2. Create the Constant Contact social draft:
    `create_social_post`, `status: DRAFT`, one `profile_posts` entry:
@@ -47,4 +47,5 @@ the flyer is a print design, not a social one.
 - [script] The link equals this project's short link (event) or public_link
   (training).
 - [script] The profile id is the one above.
+- [script] No `awaiting your answer` in the text.
 - [judgement] The text reads well on its own, with no image.

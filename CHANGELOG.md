@@ -1,5 +1,30 @@
 # Changelog
 
+## masshire-projects 1.5.0 — 2026-10-04
+
+The copy gets its own component.
+
+- New `components/description-copy.md`: the copy's six parts (`headline`,
+  `summary`, `details`, `audience`, `bring`, `body`, each a `data-part`
+  block), the content by kind, the voice, the gap marker and its redraft,
+  the subagent handoff, and the copy checks. Both task tables name it.
+- Voice rules leave `constant-contact-email`; its "Details by project type"
+  table and the per-kind body column go. Each channel now names the part it
+  takes: email `{{BODY}}`, flyer `body`, the WordPress content line, and the
+  social text take `summary`; the details box is `details` then `audience`;
+  `{{CTA_LINE}}` is `bring`; the training post is every part but
+  `headline`; the listing excerpt is `summary` plus `body`.
+- "No promise a third party controls" lives only in `description-copy`;
+  the Eventbrite, flyer, and email checks become "matches the copy", and
+  every publishing component checks for `awaiting your answer`.
+- `copy` is a value: `description-copy` fills it with the file's Drive id,
+  and every taker lists `copy` in `uses`, so a redraft marks them stale.
+  The playbooks' sectors rule and "eligibility is public" move into the
+  content-by-kind table; the template's values block gains `copy`.
+- Repo: `GLOSSARY.md` created with copy, part, and gap marker. Tests:
+  `job-fair-complete` asserts the parts and who takes which;
+  `missing-required-fact` asserts the exact marker and the `copy` uses.
+
 ## masshire-projects 1.4.1 — 2026-10-04
 
 Fixes from the whole-repo standards review. Each rule now lives in one layer.

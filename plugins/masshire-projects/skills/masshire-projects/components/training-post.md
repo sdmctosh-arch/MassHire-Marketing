@@ -17,7 +17,7 @@ Custom post type `training`. Taxonomies `training-category` and
 | Field | Value |
 |---|---|
 | post_title | The training title |
-| post_content | Public description. Add the eligibility requirements if the submission states them. |
+| post_content | The copy, every part except `headline`, in order (`description-copy`). Eligibility is in the copy when a source states it. |
 | training_category | An existing term matched on meaning. A new term is listed in the review packet and created at execute. |
 | link | The submitted application link or email address |
 | button_text | `Apply`, for both a link and an email address |
@@ -49,5 +49,5 @@ tasks).
 - [script] No existing training post with this title.
 - [script] `button_text` is `Apply`.
 - [script] `training_category` is set to exactly one term.
-- [judgement] The description is public-facing and states eligibility when the
-  submission gave it.
+- [script] No `awaiting your answer` in any field.
+- [judgement] The description matches the copy.

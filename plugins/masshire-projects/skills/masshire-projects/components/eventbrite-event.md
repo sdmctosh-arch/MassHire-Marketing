@@ -186,5 +186,5 @@ skipping any that repeat a default. The tag list goes in the review packet.
   text (`GET /events/<event_id>/ticket_buyer_settings/`).
 - [api] Date, time, and venue (or `online_event`) match the values block.
 - [api] After publish: the `OrganizerTag` entries match the tag list.
-- [judgement] The description matches the copy in `descriptions/` and makes no promise
-  a third party controls.
+- [script] The description contains no `awaiting your answer`.
+- [judgement] The description matches the copy in `descriptions/`.

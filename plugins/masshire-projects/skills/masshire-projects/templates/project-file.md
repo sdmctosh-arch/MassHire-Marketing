@@ -7,6 +7,7 @@ event_date:   YYYY-MM-DD
 created:      YYYY-MM-DD
 updated:      YYYY-MM-DD
 values:
+  copy:
   event_name:
   event_date:
   start_time:
@@ -45,7 +46,9 @@ Times are stored as 24-hour `HH:MM` in the America/New_York time zone
 (`10:00`, `13:30`). `online_platform` is filled for online events only.
 
 For a training project, the values block holds `training_link`, `path`, and
-`public_link` instead of the event values.
+`public_link` instead of the event values. `copy` is on both types: the Drive
+id of `descriptions/<project>.html`, filled by `description-copy`, so every
+task that lists `copy` in `uses` goes stale on a redraft.
 
 # STATUS
 

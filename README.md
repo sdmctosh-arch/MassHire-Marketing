@@ -3,9 +3,10 @@
 Source of truth for the MassHire Central Career Centers Claude skill,
 `masshire-projects`. It runs marketing projects (job fairs, recruitment and
 hiring events, webinars, workshops, training promotions) from request to
-finished deliverables, with one review gate. Email is part of it: the
-`constant-contact-email` component holds the brand voice, base HTML, subject
-lines, and compliance rules. The system drafts; it never sends or schedules.
+finished deliverables, with one review gate. The copy every channel takes
+from, and its voice, live in the `description-copy` component; the
+`constant-contact-email` component holds the base HTML, subject lines, and
+compliance rules. The system drafts; it never sends or schedules.
 
 ## Layout
 

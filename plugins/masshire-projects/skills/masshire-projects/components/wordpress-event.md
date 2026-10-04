@@ -14,8 +14,8 @@ runs in the execute pass.
 ## Inputs
 
 From the values block: event_date, start_time, end_time, venue, address,
-jobseeker_link, employer_link (may be empty; see `zoho-job-fair` step 3). One
-short line of post content, written from the copy. The exported flyer PNG,
+jobseeker_link, employer_link (may be empty; see `zoho-job-fair` step 3). The
+copy's `summary` part as the post content. The exported flyer PNG,
 if `flyer-export` is done; the event never waits for it.
 
 ## Process
@@ -58,4 +58,5 @@ Publish the post (status `publish`). Read back its URL.
 - [script] The registration URLs match this project's values, not another
   project's (concurrency rule).
 - [script] The category term is set and no duplicate post exists.
+- [script] No `awaiting your answer` in any field.
 - [judgement] The page reads correctly in preview.

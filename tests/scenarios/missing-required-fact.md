@@ -27,8 +27,8 @@ default, so the run must ask exactly one question and keep going.
 4. Every task other than description-copy that uses `end_time` is marked
    `blocked` with `blocked_by: end_time` (or equivalent naming the end time).
 5. The run does not stop at the missing fact: description-copy is drafted,
-   with a marked gap for the end time (e.g. `[end time — awaiting your
-   answer]`) rather than a guessed time.
+   with the gap marker exactly `[end time — awaiting your answer]` in its
+   `details` part, rather than a guessed time.
 6. No venue or address is asked for.
 7. There is no flyer task (webinars have no template) and no Zoho task.
 8. The WordPress event category is Virtual Workshop (688).
@@ -39,3 +39,6 @@ default, so the run must ask exactly one question and keep going.
     `careers`, `webinar`, `online`) and contains neither `jobfair` nor
     `hiring`.
 12. No published item or created email draft contains the gap text.
+13. The description-copy task lists every fact in `uses`, and every task that
+    takes from the copy lists `copy` in `uses`, so filling the end time
+    redrafts the copy and the redraft marks its takers stale.

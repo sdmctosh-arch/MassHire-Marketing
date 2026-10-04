@@ -44,11 +44,11 @@ Source key as in `playbooks/event.md`.
 
 | # | Task | Component | needs | uses |
 |---|---|---|---|---|
-| 1 | description-copy | Copy rules in SKILL.md | — | all facts |
-| 2 | training-post (path B only) | `training-post` | 1 | training_link, organization |
-| 3 | directorist-listing | `directorist-listing` | 2 on path B; 1 on path A | public_link |
-| 4 | training-emails | `constant-contact-email` | 1; 2 on path B | public_link |
-| 5 | facebook-post | `facebook-post-draft` | 1; 2 on path B | public_link |
+| 1 | description-copy | `description-copy` | — | all facts |
+| 2 | training-post (path B only) | `training-post` | 1 | copy, training_link, organization |
+| 3 | directorist-listing | `directorist-listing` | 2 on path B; 1 on path A | copy, public_link |
+| 4 | training-emails | `constant-contact-email` | 1; 2 on path B | copy, public_link |
+| 5 | facebook-post | `facebook-post-draft` | 1; 2 on path B | copy, public_link |
 | 6 | review-packet | SKILL.md | all above | — |
 | 7 | execute | Execute list below | 6 approved | — |
 
@@ -69,8 +69,6 @@ Source key as in `playbooks/event.md`.
   browsing. The emails and the social post use `public_link`.
 - **Path B order is fixed at execute.** The training post publishes before
   the listing.
-- **Eligibility is public.** Stated eligibility requirements go in the
-  training post description.
 
 ## Operator actions
 

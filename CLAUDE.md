@@ -9,8 +9,10 @@ not run a project or send an email.
 The system never sends or schedules anything: no send date, send time,
 resend, or post date, in any file. Reject any rule that would add one.
 
-Email rules (voice, base HTML, subject lines, compliance, Constant Contact
-tool facts) live in `components/constant-contact-email.md`.
+Copy rules (the parts, voice, the gap marker, content by kind) live in
+`components/description-copy.md`. Email rules (base HTML, subject lines,
+compliance, Constant Contact tool facts) live in
+`components/constant-contact-email.md`.
 
 The skill has three layers. Put each sentence in exactly one:
 

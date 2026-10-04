@@ -80,16 +80,16 @@ nothing else: no draft carries a date, time, or resend setting.
 | # | Task | Component | needs | uses |
 |---|---|---|---|---|
 | 1 | existing-check | `existing-check` | — | event_date, event_name |
-| 2 | description-copy | Copy rules in SKILL.md | 1 | all facts |
-| 3 | eventbrite | `eventbrite-event` | 2 | event_date, start_time, end_time, venue, address |
+| 2 | description-copy | `description-copy` | 1 | all facts |
+| 3 | eventbrite | `eventbrite-event` | 2 | copy, event_date, start_time, end_time, venue, address |
 | 4 | zoho-job-fair (if employer registration) | `zoho-job-fair` | 1 | event_name, event_date |
 | 5 | short-links | `vanity-redirect` | 1 | jobseeker_link, employer_link |
 | 6 | flyer-qr (if flyer) | `flyer-from-template`, QR section | 3 | jobseeker_link |
-| 7 | flyer (if flyer) | `flyer-from-template` | 2, 5, 6 | event_date, start_time, end_time, venue, address, jobseeker_short_link |
+| 7 | flyer (if flyer) | `flyer-from-template` | 2, 5, 6 | copy, event_date, start_time, end_time, venue, address, jobseeker_short_link |
 | 8 | flyer-export (if flyer) | `flyer-from-template`, export section | 7 | — |
-| 9 | wordpress-event | `wordpress-event` | 3; 4 if in scope | event_date, start_time, end_time, venue, address, jobseeker_link, employer_link |
-| 10 | jobseeker-emails | `constant-contact-email` | 2, 3 | event_date, start_time, end_time, venue, jobseeker_link |
-| 11 | facebook-posts | `facebook-post-draft` | 2, 5 | event_date, start_time, venue, jobseeker_short_link |
+| 9 | wordpress-event | `wordpress-event` | 3; 4 if in scope | copy, event_date, start_time, end_time, venue, address, jobseeker_link, employer_link |
+| 10 | jobseeker-emails | `constant-contact-email` | 2, 3 | copy, event_date, start_time, end_time, venue, jobseeker_link |
+| 11 | facebook-posts | `facebook-post-draft` | 2, 5 | copy, event_date, start_time, venue, jobseeker_short_link |
 | 12 | review-packet | SKILL.md | all above | — |
 | 13 | execute | Execute list below | 12 approved | — |
 
@@ -116,10 +116,9 @@ In this order, after the review packet is approved:
   registration. When slots are on, follow the slot pattern in
   `eventbrite-event`.
 - **Announce without the employer list.** The system never reads or waits for
-  the employer registrations. Job fair copy names sectors, not employers, and
-  says that the registration page will be updated as employers confirm (the
-  operator updates it by hand). Recruitment and hiring events
-  name `hiring_employer`.
+  the employer registrations; the operator updates the registration page by
+  hand as employers confirm. What the copy says for each kind is in
+  `description-copy`.
 - **Short links where people type, full links where they click or scan.**
   The flyer's printed address and the social posts carry the short link. The
   flyer's QR code, the emails, and the website event page carry the full

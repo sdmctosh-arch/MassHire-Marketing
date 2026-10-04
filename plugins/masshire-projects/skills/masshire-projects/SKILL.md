@@ -39,12 +39,10 @@ the top of the review packet. When the answer arrives, fill the value, draft
 the blocked tasks, and send an updated review packet.
 
 The copy is the exception: `description-copy` uses every fact, but it is
-drafted anyway, with a marked gap where the missing fact goes:
-`[end time — awaiting your answer]`. Everything that takes from the copy
-without using the missing fact can then be drafted. The gap is not an
-invented fact; filling the value marks the copy stale, and the redraft
-replaces the gap. A gap never reaches a public item: any published item or
-email draft that still contains `awaiting your answer` fails its checks.
+drafted anyway, with a marked gap where the missing fact goes (the marker
+and its redraft are in `description-copy`). Everything that takes from the
+copy without using the missing fact can then be drafted. A gap never
+reaches a public item: every publishing component checks for it.
 
 Never invent a fact. A default is not an invention: it is a stated rule, and
 every default and derived value used is listed in the review packet as an
@@ -277,10 +275,10 @@ each other connector's tools in one call when its first task starts.
 ## Copy
 
 The approved copy is written once, in `descriptions/<project>.html`, by the
-`description-copy` task. Every channel takes from it. Never write new event
-facts for a channel. A missing Required fact leaves a marked gap in the copy
-(see Required facts and missing facts), never a guess. Do not promise an outcome a third party controls: write
-what may happen.
+`description-copy` task. Every channel takes from it, by the parts
+`description-copy` defines, and lists `copy` in its `uses` so a redraft
+marks it stale. Never write new event facts for a channel. Voice, the gap
+marker, and the copy checks live in `description-copy`.
 
 ## Concurrency
 

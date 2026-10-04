@@ -22,7 +22,7 @@ Real example: listing 56577, whose `_website` points at training post 56574.
 | `_directory_type` | `390` |
 | post_title | The training title, matching the training post when there is one |
 | post_content | **Search text, not display text.** Not shown anywhere on the site. Include all text about the training, plus search terms a jobseeker would type: the trade, the job titles it leads to, related skills, common misspellings, and plain words for the field. |
-| post_excerpt and `_excerpt` | A short public description, two or three sentences |
+| post_excerpt and `_excerpt` | The copy's `summary`, then up to two sentences from its `body` |
 | `_website` | Path A: the submitted link. Path B: the training post permalink. Always read it from `public_link` in the values block. |
 | `at_biz_dir-location` | When a source gives a location: an existing term matched on meaning; a new term is listed in the review packet and created at execute. No location in any source: no term. |
 | `at_biz_dir-category` | An existing term matched on meaning; a new term is listed in the review packet and created at execute |
@@ -45,6 +45,7 @@ Publish the listing. Confirm `_website` still equals `public_link`.
 - [script] `_directory_type` is 390.
 - [script] `_website` equals `public_link` exactly and is not empty.
 - [script] `_excerpt` and post_excerpt hold the same text.
+- [script] No `awaiting your answer` in any field.
 - [script] One category term is set, and at most one location term (none
   when no source gives a location).
 - [judgement] The description holds real search terms, not a copy of the

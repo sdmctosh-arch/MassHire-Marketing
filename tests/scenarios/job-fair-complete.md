@@ -79,3 +79,12 @@ A complete job fair request. Nothing is missing, so nothing may be asked.
     the new folder's id.
 24. Each email draft is created with a campaign `name` of the form
     `Southbridge Job Fair - 2026-11-12 - Email <n>`.
+25. The copy in `descriptions/` has six parts in this order, each a
+    `data-part` block with no visible heading: headline, summary, details,
+    audience, bring, body.
+26. The email `{{BODY}}`, the flyer `body`, and the WordPress post content
+    all take the copy's `summary` part; each email details box is the
+    copy's `details` part followed by its `audience` part.
+27. The `copy` value holds the Drive id of the description file, and every
+    task that takes from the copy (eventbrite, flyer, wordpress-event,
+    jobseeker-emails, facebook-posts) lists `copy` in `uses`.
