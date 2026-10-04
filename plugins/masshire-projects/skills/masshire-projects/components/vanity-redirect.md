@@ -3,9 +3,9 @@
 A short masshirecentralcc.com path that forwards to a long registration URL,
 so a flyer, a social post, or a spoken announcement carries one readable link.
 
-Access: the Redirection plugin has no Novamira ability. Create and read
-redirects by running PHP through the Novamira connector
-(`novamira/execute-php`), which loads the plugin's own `Red_Item` class.
+Access: the `wordpress` system (Novamira `execute-php`). The Redirection
+plugin has no Novamira ability and a redirect is not a post, so this
+component holds its own PHP, which loads the plugin's `Red_Item` class.
 The slug is chosen at intake by `existing-check`, using the path check
 below, and shown in the review packet, because it goes on printed material.
 The redirect is created in the execute pass (Level 2). Deleting one is

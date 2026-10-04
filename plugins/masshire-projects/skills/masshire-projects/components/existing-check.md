@@ -16,11 +16,11 @@ matters: a second object makes a second link and splits the registrations.
 | Playbook | Target | Search |
 |---|---|---|
 | event | Eventbrite event | `GET /organizations/<org_id>/events/?status=draft,live&order_by=start_desc` (org id from `eventbrite-event`); a similar name or the same date. |
-| event | WordPress `event` post | `novamira/execute-php`, `get_posts` of type `event` with `post_status` any (drafts count), a similar title; read the `date` field of any match. |
+| event | WordPress `event` post | The `wordpress` find by title, type `event` (drafts count); read the `date` field of any match. |
 | event, job fairs | Zoho `Job_Fairs` record | Search on `Name` and on `Event_Date` (`zoho-job-fair` tool facts). |
 | event | Redirect path(s) | For each slug the field table derives (`jobseeker_slug`, then `employer_slug`), the path check in `vanity-redirect`; a taken path moves to the next candidate by its slug rules. |
-| training | WordPress `training` post | `get_posts` of type `training`, `post_status` any, the same title (path B). |
-| training | Directorist `at_biz_dir` listing | `get_posts` of type `at_biz_dir`, `post_status` any, the same title. |
+| training | WordPress `training` post | The `wordpress` find by title, type `training` (path B). |
+| training | Directorist `at_biz_dir` listing | The `wordpress` find by title, type `at_biz_dir`. |
 
 ## Process
 

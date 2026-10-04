@@ -1,5 +1,23 @@
 # Changelog
 
+## masshire-projects 1.9.0 — 2026-10-04
+
+The WordPress post procedure gets its own file.
+
+- New `systems/wordpress.md`: Novamira access, the site facts (post types,
+  taxonomies, meta conventions, the Events Calendar being inactive), the
+  one-read-before-the-first-write rule, the draft-post procedure (find,
+  create or update, fields, terms, preview and sample permalink, publish,
+  media upload) with its `execute-php` call shapes, the two term policies
+  (fixed; match or propose), and the checks every post gets.
+- `wordpress-event`, `training-post`, and `directorist-listing` shrink to a
+  field table, a term policy, and their own checks; they run the procedure
+  instead of describing it three times. `vanity-redirect` and
+  `existing-check` name the system for their access.
+- The training playbook's term rows name the policy instead of restating
+  it. Tests: `training-path-b` asserts the terms are matched on meaning and
+  nothing is created in the draft pass. `GLOSSARY.md` gains "term policy".
+
 ## masshire-projects 1.8.0 — 2026-10-04
 
 One live-system check.

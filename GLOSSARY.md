@@ -36,6 +36,12 @@ and the one set of rules for opening, creating, writing, filling, and
 renaming a project. The Cowork filesystem holds nothing between sessions.
 _Avoid_: storage, Drive (when the rules are meant, not the service)
 
+**Term policy**:
+How a WordPress taxonomy term is chosen for a post: fixed (the component
+names the term ids) or match-or-propose (an existing term matched on
+meaning, else proposed in the review packet and created at execute).
+_Avoid_: tagging, categorization
+
 **System**:
 A skill layer: how a system that is not one task is used, shared by every
 task that touches it (`systems/<system>.md`). The project store is one.
