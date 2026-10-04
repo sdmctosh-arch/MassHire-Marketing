@@ -29,8 +29,9 @@ filling. Never hard-code field names from this table into a call.
 
 1. Library: `qrcode[pil]` and `pyzbar`. Install if missing:
    `pip install "qrcode[pil]" pyzbar --break-system-packages`.
-2. Target URL: `jobseeker_short_link`. It must be the same URL `cta_url`
-   shows. (The redirect is created at execute; the QR encodes the text now.)
+2. Target URL: `jobseeker_link`, the Eventbrite event URL. It is known as
+   soon as the Eventbrite draft exists and does not change on publish, so the
+   QR never depends on a redirect.
 3. Settings: error correction M, `box_size` 20, `border` 4. Never use a border
    below 4; scanners need the blank margin.
 4. Make two files in `/mnt/user-data/outputs/`:
@@ -58,14 +59,16 @@ filling. Never hard-code field names from this table into a call.
 
 1. Call `get-brand-template-dataset` for the template.
 2. Collect every field value first:
-   - `cta_url`: `jobseeker_short_link` as readable text, never the Eventbrite
-     URL.
+   - `cta_url`: `jobseeker_short_link` as readable text, for people who type
+     the address. The QR carries the Eventbrite URL.
    - `cta_qr`: the `asset_id` from `flyer-qr`.
    - `when_value`, `location`, `address`: from the values block.
-   - `body`: from the copy. Job fair: name the sectors, never employers.
+   - `body`: from the copy. Job fair: name the sectors, never employers, and
+     say the registration page will be updated as employers confirm.
    - Job Listings: `event_type`, `company`, `job_name` from the event name;
      the position rows from `positions`; `partner_logo` from the Canva asset
-     lookup.
+     lookup. Send an empty string for every field of an unused position row,
+     then check the thumbnail for a leftover label or an empty box.
 3. Call `autofill-design` once, with every value, and the title
    `<Event Name> Flyer - YYYY-MM-DD`. Every call creates a new design, and any
    field left out comes back blank. Autofill once, with everything.
@@ -83,12 +86,12 @@ old one is left as is.
 1. Design id: from the autofill result (or the 11-character id starting with
    `D` after `/design/` in the design URL, e.g. `DAGKFvurv_0`).
 2. Call `get-export-formats`, then `export-design` once per format: PNG
-   (social image, WordPress `flyer` field) and PDF (print).
+   (WordPress `flyer` field) and PDF (print).
 3. Download each returned URL with `curl` into `/mnt/user-data/outputs/`.
 4. Save both files to `flyer/` in the project folder, and present them to the
    operator with the review packet (in Cowork, with SendUserFile).
-5. Record the PNG export URL on the task for `facebook-post-draft`; it
-   expires, so the social draft is created in the same session.
+5. If the `wordpress-event` draft already exists, add the PNG to it now
+   (see `wordpress-event` step 6).
 
 ## Tool facts
 
@@ -105,8 +108,8 @@ old one is left as is.
 
 ## Checks
 
-- [script] The QR decodes to `jobseeker_short_link` exactly, and `cta_url`
-  shows the same text.
+- [script] The QR decodes to this project's `jobseeker_link` exactly.
+- [script] `cta_url` shows this project's `jobseeker_short_link`.
 - [script] Date, time, venue, and address on the design match the values
   block.
 - [judgement] The thumbnail shows no wrapped or clipped text, and the layout

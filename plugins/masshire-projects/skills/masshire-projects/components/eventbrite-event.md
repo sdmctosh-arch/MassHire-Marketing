@@ -33,11 +33,11 @@ file or any file in the workspace.
    `status: draft`, the values-block date/time, the matched venue ID, and
    the copy from `descriptions/<project>.html` as the HTML
    description.
-4. Build the ticket classes and order-form questions per the patterns below.
-   Confirm the request bodies match the known-good reference event for the
-   pattern (pull it via `GET /events/<ref_event_id>/ticket_classes/` and
-   `.../order_confirmation_questions/`) before creating new ones — don't
-   invent field values from general API knowledge alone.
+4. Build the ticket classes and order-form questions from the settings
+   stored below. Never invent a field value from general API knowledge.
+   If a setting in this file is marked "not recorded", or the API refuses to
+   create a question or a setting, use the fallback in "When the API cannot
+   build it".
 5. Set the order confirmation (see below).
 6. Record the event id in the task, and the draft's public URL (the `url`
    field of the create response) as the `jobseeker_link` value. The URL does
@@ -50,7 +50,7 @@ file or any file in the workspace.
 2. Confirm `jobseeker_link` opens the live event page.
 3. Read the tags back (see Tags). Missing tags are reported, not blocking.
 
-## Ticket patterns (verify against the reference event; do not rebuild from scratch)
+## Ticket patterns
 
 Common to every pattern:
 
@@ -77,12 +77,43 @@ Reference: Worcester Job Fair, event `2000642954934`.
 
 ## Order-form questions
 
-- Six questions, fixed set and fixed option lists. Never delete a question;
-  scope it to a ticket class. Only the Job Seeker ID question shows on the
-  walk-in `Admission` ticket. The questions scoped to `Registration` in the
-  general pattern are scoped to every slot ticket in the slot pattern.
-  Question 6 ("How did you hear...") measures the marketing channels; its
-  options must not change between events.
+Seven questions, a fixed set. Every question except question 7 is required.
+Every question is shown on the `Registration` ticket (in the slot pattern,
+on every slot ticket). The walk-in `Admission` ticket gets none. Never delete
+a question. Question 6 measures the marketing channels; its options never
+change between events.
+
+| # | Question text | Type | Options |
+|---|---|---|---|
+| 1 | Cell phone | Eventbrite's built-in contact field, not a custom question: turn it on and make it required | — |
+| 2 | What city or town do you live in? | Short text | — |
+| 3 | Have you served in the military? | Single choice | Yes; No |
+| 4 | Are you looking for full-time or part-time work? | Single choice | Full time; Part time; Either |
+| 5 | What industries or fields of work are you interested in? | Multiple choice (check all that apply) | Not recorded yet: copy from the reference event |
+| 6 | How did you hear about this event? | Not recorded yet: copy from the reference event | Not recorded yet: copy from the reference event |
+| 7 | MassHire Job Seeker ID number | Short text, optional | — |
+
+Create questions 2–7 with `POST /events/<event_id>/questions/`. Set
+question 1 the way the reference event has it: read the reference event's
+built-in fields (`GET /events/<ref_event_id>/canned_questions/`) and match
+it.
+
+Where a cell reads "not recorded yet", copy it from the reference event
+(`GET /events/<ref_event_id>/questions/`), keeping the options and their
+order exactly. Show what was copied in the review packet under "Order-form
+details copied from the reference event", as information the operator can
+store in this table. It is not a question and asks for no reply.
+
+## When the API cannot build it
+
+If the API refuses a ticket setting or a question, copy the reference event
+for the pattern (`POST /events/<ref_event_id>/copy/`) instead of building
+from scratch. The copy carries the ticket classes, the questions, and their
+scoping. Then update the copy to this project: name, dates and times,
+venue, description, each ticket class's sales window, and status `draft`.
+Run every check below on the copy; a copy that keeps the reference event's
+dates or name is a failed check. Record in the task that the event was
+copied, and from which reference event.
 
 ## Order confirmation
 
@@ -105,10 +136,17 @@ Eventbrite fills the `text` form from `html`. Verified on a draft event,
 
 ## Tags
 
-Default tags on every event: `employment`, `jobs`, `jobfair`, `hiring`. Add
-2-3 tags for this event from its kind, topic, or sector (for example
-`webinar`, `workshop`, `manufacturing`). The tag list goes in the review
-packet.
+Default tags by kind:
+
+| Kind | Default tags |
+|---|---|
+| Job fair, recruitment, hiring | `employment`, `jobs`, `jobfair`, `hiring` |
+| Webinar | `employment`, `careers`, `webinar`, `online` |
+| Workshop | `employment`, `careers`, `workshop`, `jobseekers` |
+
+Eventbrite allows 10 tags. Add up to 6 more for this event from its topic,
+sectors, and town (for example `resume`, `manufacturing`, `southbridge`),
+skipping any that repeat a default. The tag list goes in the review packet.
 
 - [constraint: no API write] The public API v3 has no endpoint that writes
   tags (`event.tags` is rejected; `/events/<id>/tags/` does not exist —
@@ -125,8 +163,11 @@ packet.
   windows — confirm by reading them back
   (`GET /events/<event_id>/ticket_classes/`), not just from the create
   response.
-- [api] Six questions present; only the Job Seeker ID question on the walk-in
-  `Admission` ticket.
+- [api] Questions 2–7 present on `Registration` (or every slot ticket) and
+  not on `Admission`; 2–6 required and 7 optional; the cell phone field is
+  on and required;
+  the options of questions 3–6 match this file or the reference event
+  exactly.
 - [api] `confirmation_message` and `instructions` both equal the standard
   text (`GET /events/<event_id>/ticket_buyer_settings/`).
 - [api] Date, time, and venue (or `online_event`) match the values block.

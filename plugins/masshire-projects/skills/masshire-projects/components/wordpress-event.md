@@ -15,8 +15,8 @@ runs in the execute pass.
 
 From the values block: event_date, start_time, end_time, venue, address,
 jobseeker_link, employer_link (may be empty; see `zoho-job-fair` step 3). One
-short line of post content, written from the copy. The exported flyer PNG
-when the flyer is in scope.
+short line of post content, written from the copy. The exported flyer PNG,
+if `flyer-export` is done; the event never waits for it.
 
 ## Process
 
@@ -34,8 +34,12 @@ when the flyer is in scope.
    create a term; a case the table does not cover is flagged in the review
    packet.
 5. For an online event, `location` is `Online` and `address` is empty.
-6. When the flyer is in scope: upload the exported PNG to the media library
-   and set the `flyer` field to it (tested).
+6. If the flyer PNG exists: upload it to the media library and set the
+   `flyer` field to it (tested). If the flyer is not exported yet, create the
+   event without it. When `flyer-export` finishes later in the draft pass,
+   add the flyer to this draft in place. If the flyer is still missing at
+   execute, publish without it and list "add the flyer to the website event"
+   in the handoff.
 7. Read the preview link for the review packet.
 
 ## Execute

@@ -9,6 +9,7 @@ Checks:
   - playbooks and templates named in SKILL.md exist
   - every component a playbook task table names exists
   - every skill named as "the `x` skill" exists in this repo
+  - every tests/scenarios/*.md has Message, World, Assertions and numbered assertions
 """
 import json
 import re
@@ -123,6 +124,17 @@ for pdir in plugin_dirs:
                 for name in re.findall(r"`([\w-]+)`", cols[2]):
                     if name not in components:
                         err(f"{rel(pb)}: task table names missing component '{name}'")
+
+# Behavior-test scenarios: three sections, numbered assertions.
+for sc in sorted((ROOT / "tests/scenarios").glob("*.md")):
+    body = sc.read_text()
+    heads = re.findall(r"^## (.+)$", body, re.M)
+    if heads != ["Message", "World", "Assertions"]:
+        err(f"{rel(sc)}: sections must be Message, World, Assertions in order (found {heads})")
+        continue
+    nums = [int(n) for n in re.findall(r"^(\d+)\. ", body.split("## Assertions", 1)[1], re.M)]
+    if not nums or nums != list(range(1, len(nums) + 1)):
+        err(f"{rel(sc)}: assertions must be numbered 1..n")
 
 if errors:
     print("Validation failed:")

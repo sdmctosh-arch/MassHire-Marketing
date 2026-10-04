@@ -11,6 +11,7 @@ values:
   event_date:
   start_time:
   end_time:
+  online_platform:
   venue:
   address:
   jobseeker_slug:
@@ -39,6 +40,9 @@ Every task carries these fields. Omit a field only where marked optional.
 | `uses` | Value names. A change to any of them marks this task stale. |
 | `blocked_by` | Required when status is blocked: the missing fact or the failing check. |
 | `output` | Optional. The file path, url, or external id this task produced. |
+
+Times are stored as 24-hour `HH:MM` in the America/New_York time zone
+(`10:00`, `13:30`). `online_platform` is filled for online events only.
 
 For a training project, the values block holds `training_link`, `path`, and
 `public_link` instead of the event values.

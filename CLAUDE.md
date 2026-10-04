@@ -26,6 +26,9 @@ When a rule moves or is superseded, delete the old text in the same change.
 ## Before committing
 
 - Run `scripts/validate.py` (or `scripts/package.sh`).
+- If the change alters behavior (a rule, default, task list, or execute
+  step), run the behavior tests (`/test-skill`, see `tests/README.md`) and
+  add or update a scenario that covers it.
 - A new component must appear in a playbook task table, and every component
   a task table names must exist — the validator checks this.
 - Keep each `plugin.json` description under 500 characters and a
