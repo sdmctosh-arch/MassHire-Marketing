@@ -1,5 +1,21 @@
 # Changelog
 
+## masshire-projects 1.6.0 — 2026-10-04
+
+The field contract is declared once and checked.
+
+- `copy` is declared in both playbooks' field tables (**Generated** by
+  `description-copy`).
+- The template states the values-block rule (every field two or more tasks
+  use) and lists the training values in a table the validator reads.
+- Component Inputs sections no longer repeat the value names; they point
+  at the task's `uses`.
+- `validate.py` checks the contract: every `uses` name is a field the same
+  playbook declares, every `needs` entry is an earlier row, the template's
+  values block holds every shared field and nothing undeclared, for both
+  types. A renamed or missing value is now a validation error instead of a
+  silent staleness hole.
+
 ## masshire-projects 1.5.0 — 2026-10-04
 
 The copy gets its own component.

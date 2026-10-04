@@ -19,6 +19,7 @@ Source key as in `playbooks/event.md`.
 | `application_deadline` | **Request** or **Lookup**; used in copy only. |
 | `training_start` | **Request** or **Lookup**; used in copy only. |
 | `public_link` | **Derived**. Path A: `training_link`. Path B: the training post's permalink, read from the draft's sample permalink in the draft pass and confirmed after publish. |
+| `copy` | **Generated** by `description-copy`: the Drive id of `descriptions/<project>.html`. Every task that takes from the copy lists it in `uses`. |
 | `training-category` term | **Derived**: match an existing term on meaning; a new term is listed in the review packet and created at execute. |
 | Directorist category and location terms | **Derived**, the same way. |
 | Listing search text, excerpt | **Written**. |

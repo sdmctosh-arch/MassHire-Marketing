@@ -7,13 +7,12 @@ the review packet is approved.
 
 ## Inputs
 
-From the values block: event_date, start_time, end_time, venue, address. From
-the project file:
-`event_kind`, the copy in `descriptions/<project>.html`, the scope
-fields (time slots and slot range, walk-ins), the derived tag list,
-capacity (default under Ticket patterns), max tickets per order (default 10). An Eventbrite API
-token, read from Google Drive (see step 1) — never write it into the project
-file or any file in the workspace.
+The values this task lists in `uses` (the playbook task table). From the
+project file: `event_kind`, the copy in `descriptions/<project>.html`, the
+scope fields (time slots and slot range, walk-ins), the derived tag list,
+capacity (default under Ticket patterns), max tickets per order (default 10).
+An Eventbrite API token, read from Google Drive (see step 1) — never write it
+into the project file or any file in the workspace.
 
 ## Process
 

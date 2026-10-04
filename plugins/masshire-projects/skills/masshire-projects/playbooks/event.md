@@ -57,6 +57,7 @@ question), **Request** (from the request, else the fallback shown),
 | `jobseeker_short_link` | **Derived**: `https://masshirecentralcc.com/<jobseeker_slug>`. The redirect is created at execute. |
 | `employer_link` | **Generated** by the Zoho automation in the draft pass. |
 | `employer_short_link` | **Derived**: `https://masshirecentralcc.com/<employer_slug>`. |
+| `copy` | **Generated** by `description-copy`: the Drive id of `descriptions/<project>.html`. Every task that takes from the copy lists it in `uses`. |
 | Tags | **Derived**: 4 defaults by kind + up to 6 from topic, sector, town; 10 at most. See `eventbrite-event`. |
 | Flyer design name | **Derived**: `<Event Name> Flyer - YYYY-MM-DD`. |
 

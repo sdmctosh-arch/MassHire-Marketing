@@ -12,9 +12,10 @@ for one.
 ## Inputs
 
 The copy in `descriptions/<project>.html`, by its parts (`summary`,
-`details`, `audience`, `bring`; see `description-copy`); the values the project type
-supplies (event: event_date, start_time, end_time, venue, jobseeker_link;
-training: public_link); the email draft count and roles from the playbook.
+`details`, `audience`, `bring`; see `description-copy`); the values this task
+lists in `uses` (the playbook task table; the REGISTER link is
+jobseeker_link for an event and public_link for a training); the email draft
+count and roles from the playbook.
 
 ## Account details
 

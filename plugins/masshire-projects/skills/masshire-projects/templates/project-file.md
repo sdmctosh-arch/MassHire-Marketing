@@ -45,10 +45,18 @@ Every task carries these fields. Omit a field only where marked optional.
 Times are stored as 24-hour `HH:MM` in the America/New_York time zone
 (`10:00`, `13:30`). `online_platform` is filled for online events only.
 
-For a training project, the values block holds `training_link`, `path`, and
-`public_link` instead of the event values. `copy` is on both types: the Drive
-id of `descriptions/<project>.html`, filled by `description-copy`, so every
-task that lists `copy` in `uses` goes stale on a redraft.
+The values block holds every field that two or more tasks list in `uses`
+(the playbook's field table declares each one); facts one task uses go in
+FACTS. By type:
+
+| Type | Values block |
+|---|---|
+| event | The keys in the front matter above. |
+| training | `copy`, `training_link`, `path`, `public_link` |
+
+`copy` is on both types: the Drive id of `descriptions/<project>.html`,
+filled by `description-copy`, so every task that lists `copy` in `uses` goes
+stale on a redraft.
 
 # STATUS
 

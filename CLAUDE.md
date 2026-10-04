@@ -33,6 +33,11 @@ When a rule moves or is superseded, delete the old text in the same change.
   add or update a scenario that covers it.
 - A new component must appear in a playbook task table, and every component
   a task table names must exist — the validator checks this.
+- A value is declared once, in the playbook's field table. Every name in a
+  task table's `uses` column must be a declared field, every `needs` entry
+  an earlier row, and the template's values block must hold every field two
+  or more tasks use — the validator checks this too. Components never list
+  the values they read; they point at `uses`.
 - Keep each `plugin.json` description under 500 characters and a
   complete sentence; the SKILL.md front-matter description is what triggers
   the skill and must stay under 1024.

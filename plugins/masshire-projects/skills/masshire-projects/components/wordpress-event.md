@@ -13,8 +13,8 @@ runs in the execute pass.
 
 ## Inputs
 
-From the values block: event_date, start_time, end_time, venue, address,
-jobseeker_link, employer_link (may be empty; see `zoho-job-fair` step 3). The
+The values this task lists in `uses` (the playbook task table);
+employer_link may be empty (see `zoho-job-fair` step 3). The
 copy's `summary` part as the post content. The exported flyer PNG,
 if `flyer-export` is done; the event never waits for it.
 
