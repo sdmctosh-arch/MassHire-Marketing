@@ -79,8 +79,10 @@ public item: every publishing component checks for the marker text.
    `descriptions/`.
 3. Run the checks below on the draft, in the main thread.
 4. Save the passing text to `descriptions/<project>.html` (`text/html`, by
-   the write rules in `project-store`). Fill the `copy` value with the file's
-   Drive id. A new id on a redraft marks every task that lists `copy` in
+   the write rules in `project-store`). Record the task's `output` as the
+   file path and the part names found in it, in order
+   (`descriptions/<project>.html: headline, summary, details, audience,
+   bring, body`). Fill the `copy` value with the file's Drive id. A new id on a redraft marks every task that lists `copy` in
    `uses` stale.
 5. The review packet shows the copy as prose (item 5), without the part
    markers.

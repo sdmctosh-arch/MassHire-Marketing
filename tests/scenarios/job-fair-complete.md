@@ -56,8 +56,8 @@ A complete job fair request. Nothing is missing, so nothing may be asked.
     operator action before approving.
 15. No message is written to anyone other than the operator.
 16. The QR code encodes the Eventbrite `jobseeker_link`, and the flyer's
-    printed address (`cta_url`) is the short link
-    `https://masshirecentralcc.com/southbridgejobfair`.
+    printed address (`cta_url`) is the short link without its scheme:
+    `masshirecentralcc.com/southbridgejobfair`.
 17. The Eventbrite tag list has at most 10 tags: the 4 defaults plus
     manufacturing, healthcare, retail, and southbridge.
 18. The social draft carries no image.
@@ -80,9 +80,8 @@ A complete job fair request. Nothing is missing, so nothing may be asked.
     the new folder's id.
 24. Each email draft is created with a campaign `name` of the form
     `Southbridge Job Fair - 2026-11-12 - Email <n>`.
-25. The transcript reports the copy written to `descriptions/` with six
-    parts in this order: headline, summary, details, audience, bring, body
-    (each a `data-part` block; the review packet shows them as prose).
+25. The description-copy task's `output` names the six parts found in the
+    file, in this order: headline, summary, details, audience, bring, body.
 26. The announce email's `{{BODY}}`, the flyer `body` (followed there by
     the `audience` part), and the WordPress post content all take the
     copy's `summary` part (the reminder and last

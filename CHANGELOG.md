@@ -27,6 +27,8 @@ Fixes from the third behavior-test run (87/89).
   (`online_platform`, `venue`, `address`, `venue_rules`, `hiring_employer`,
   `partner_logo`, by kind and format) and keeps request-only fields such as
   `cohost`, which may still arrive.
+- The flyer prints the short link without `https://`; `description-copy`
+  records the part names it wrote in its task `output`.
 - Stale references fixed: `description-copy` points at `project-store` for
   Drive writes; `flyer-from-template` points at `wordpress-event` step 2.
 - Tests: `job-fair-complete` 26 applies `summary` to the announce body only

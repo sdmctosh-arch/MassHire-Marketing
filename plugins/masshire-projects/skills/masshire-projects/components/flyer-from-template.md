@@ -57,8 +57,9 @@ filling. Never hard-code field names from this table into a call.
 
 1. Call `get-brand-template-dataset` for the template.
 2. Collect every field value first:
-   - `cta_url`: `jobseeker_short_link` as readable text, for people who type
-     the address. The QR carries the Eventbrite URL.
+   - `cta_url`: `jobseeker_short_link` without its `https://`
+     (`masshirecentralcc.com/<slug>`), for people who type the address. The
+     QR carries the Eventbrite URL.
    - `cta_qr`: the `asset_id` from `flyer-qr`.
    - `when_value`, `location`, `address`: from the values block.
    - `body`: the copy's `summary` part, then its `audience` part (for a
@@ -107,7 +108,8 @@ old one is left as is.
 ## Checks
 
 - [script] The QR decodes to this project's `jobseeker_link` exactly.
-- [script] `cta_url` shows this project's `jobseeker_short_link`.
+- [script] `cta_url` shows this project's `jobseeker_short_link` without
+  its `https://`, character for character otherwise.
 - [script] Date, time, venue, and address on the design match the values
   block.
 - [judgement] The thumbnail shows no wrapped or clipped text, and the layout
