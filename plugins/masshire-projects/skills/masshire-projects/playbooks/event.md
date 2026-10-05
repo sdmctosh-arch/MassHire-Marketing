@@ -86,11 +86,11 @@ nothing else: no draft carries a date, time, or resend setting.
 | 4 | zoho-job-fair (if employer registration) | `zoho-job-fair` | 1 | event_name, event_date |
 | 5 | short-links | `vanity-redirect` | 1 | jobseeker_link, employer_link |
 | 6 | flyer-qr (if flyer) | `flyer-from-template`, QR section | 3 | jobseeker_link |
-| 7 | flyer (if flyer) | `flyer-from-template` | 2, 5, 6 | copy, event_date, start_time, end_time, venue, address, jobseeker_short_link |
+| 7 | flyer (if flyer) | `flyer-from-template` | 2, 6 | copy, event_date, start_time, end_time, venue, address, jobseeker_short_link |
 | 8 | flyer-export (if flyer) | `flyer-from-template`, export section | 7 | — |
 | 9 | wordpress-event | `wordpress-event` | 3; 4 if in scope | copy, event_date, start_time, end_time, venue, address, jobseeker_link, employer_link |
 | 10 | jobseeker-emails | `constant-contact-email` | 2, 3 | copy, event_date, start_time, end_time, venue, jobseeker_link |
-| 11 | facebook-posts | `facebook-post-draft` | 2, 5 | copy, event_date, start_time, venue, jobseeker_short_link |
+| 11 | facebook-posts | `facebook-post-draft` | 2 | copy, event_date, start_time, venue, jobseeker_short_link |
 | 12 | review-packet | SKILL.md | all above | — |
 | 13 | execute | Execute list below | 12 approved | — |
 

@@ -50,13 +50,14 @@ A complete job fair request. Nothing is missing, so nothing may be asked.
 12. No send date, send time, resend date, post date, or `SCHEDULED` status is
     set or planned anywhere, and no scheduling tool is called.
 13. No redirect is created in the draft pass; redirects appear only in the
-    execute list, after the Eventbrite publish.
+    execute list, after the Eventbrite publish. Neither the flyer nor the
+    facebook-posts task lists short-links in `needs`.
 14. The review packet lists "add the tags to the Eventbrite draft" as an
     operator action before approving.
 15. No message is written to anyone other than the operator.
 16. The QR code encodes the Eventbrite `jobseeker_link`, and the flyer's
-    printed address (`cta_url`) is the short link
-    `https://masshirecentralcc.com/southbridgejobfair`.
+    printed address (`cta_url`) is the short link without its scheme:
+    `masshirecentralcc.com/southbridgejobfair`.
 17. The Eventbrite tag list has at most 10 tags: the 4 defaults plus
     manufacturing, healthcare, retail, and southbridge.
 18. The social draft carries no image.
@@ -79,12 +80,13 @@ A complete job fair request. Nothing is missing, so nothing may be asked.
     the new folder's id.
 24. Each email draft is created with a campaign `name` of the form
     `Southbridge Job Fair - 2026-11-12 - Email <n>`.
-25. The copy in `descriptions/` has six parts in this order, each a
-    `data-part` block with no visible heading: headline, summary, details,
-    audience, bring, body.
-26. The email `{{BODY}}`, the flyer `body`, and the WordPress post content
-    all take the copy's `summary` part; each email details box is the
-    copy's `details` part followed by its `audience` part.
+25. The description-copy task's `output` names the six parts found in the
+    file, in this order: headline, summary, details, audience, bring, body.
+26. The announce email's `{{BODY}}`, the flyer `body` (followed there by
+    the `audience` part), and the WordPress post content all take the
+    copy's `summary` part (the reminder and last
+    call bodies are new one-sentence wording); each email details box is
+    the copy's `details` part followed by its `audience` part.
 27. The `copy` value holds the Drive id of the description file, and every
     task that takes from the copy (eventbrite, flyer, wordpress-event,
     jobseeker-emails, facebook-posts) lists `copy` in `uses`.

@@ -201,8 +201,10 @@ stay accurate to the content.
 - [script] No `awaiting your answer` in the returned preview.
 - [script] Exactly one compliance footer.
 - [script] The number of drafts equals the playbook's count.
-- [script] Details box filled; date, time, and location appear there and
-  nowhere else.
+- [script] Details box filled. Date, time, and location appear in it; the
+  body, the CTA line, and the green block carry none of them. The headline
+  and the subject may name the date (and the subject the place), by their
+  own rules.
 - [script] Subject and preheader filled; subject under the length rule.
 - [judgement] Subjects specific and distinct between drafts; each resend
   subject differs from its subject.

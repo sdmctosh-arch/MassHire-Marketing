@@ -96,8 +96,10 @@ depend on them; run the rest. Everything else that is blocked or unfinished
 event) stays as it is and goes in the handoff list. Name every skipped action
 and the reason in the report.
 
-Run the playbook's execute list in order. Each action gets one LOG line:
-`Executed: <task> <action>` (the review approval is logged once, as
+Run the playbook's execute list in order. Each numbered step of that list
+is one action and gets one LOG line, naming every object it touched:
+`Executed: <task> <action>`, for example `Executed: short-links create
+/graftonfair, /graftonfairemployer` (the review approval is logged once, as
 `Approved: review packet`). Verify each action with its component's checks
 before the next one. If an action fails, finish the ones that do not depend
 on it, then report. Finish with one message: what was done, the links, and
@@ -121,7 +123,7 @@ the connectors that playbook's in-scope tasks need.
 |---|---|---|
 | Google Drive | every project — all state, plus `eventbrite-token.txt` | reading `index.md` (intake step 1) |
 | Novamira | `wordpress-event`, `directorist-listing`, `training-post`, `vanity-redirect`, `existing-check` | `discover-abilities` |
-| Eventbrite API v3 | `eventbrite-event`, `existing-check` | `GET https://www.eventbriteapi.com/v3/users/me/` with the Drive token |
+| Eventbrite API v3 | `eventbrite-event`, `existing-check` | Read the token from Drive (`eventbrite-event`, Process step 1), then `GET https://www.eventbriteapi.com/v3/users/me/` with it |
 | Constant Contact | `constant-contact-email`, `facebook-post-draft` | `retrieve_email_addresses` |
 | Canva | `flyer-from-template` | `search-brand-templates` — the template the flyer needs is in the result |
 | Zoho CRM | `zoho-job-fair`, `existing-check` — job fairs only | `getModules` |
@@ -158,8 +160,9 @@ in one call when its first task starts.
    template, the `index.md` row.
 6. Fill every field from the playbook's field table, into the `values` block
    or FACTS as the store says.
-7. Write the task list: only in-scope tasks, with conditional `needs`
-   resolved; record the existing-check result on its task, `done`.
+7. Write the task list: only in-scope tasks, with `needs` and `uses`
+   resolved to concrete names (`project-store`, Tasks); record the
+   existing-check result on its task, `done`.
 8. Run the draft pass: every task whose `needs` are done. Use subagents for
    independent drafts (copy, emails, social) where it saves time.
 9. Present the review packet. Set project status `review`.

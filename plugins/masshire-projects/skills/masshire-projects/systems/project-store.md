@@ -37,10 +37,22 @@ One table, one row per project, newest first:
 | slug | type | event_date | status | folder_id | notes |
 ```
 
+Every column is filled on every row; `notes` may be empty. A new project's
+row, as appended:
+
+```
+| 2026-11-12-southbridge-job-fair | event/job-fair | 2026-11-12 | intake | 1AbCfolderid | |
+```
+
 `type` is the playbook and, for events, the kind (`event/job-fair`,
-`training`). `status` mirrors the project file's status and is updated in
-the same write whenever that status changes. `notes` holds an old slug after
-a rename, and nothing else routine.
+`training`). `event_date` is the slug's date. `status` mirrors the project
+file's status. `notes` holds an old slug after a rename, and nothing else
+routine.
+
+`index.md` is written only at a checkpoint, in the same checkpoint as the
+project file, and only when a row is added or its status changes. A new
+project's first turn writes it twice, by design: the row at creation
+(`intake`), then `review` at the end of the draft pass.
 
 ## Tool loading
 
@@ -125,13 +137,44 @@ Every task carries these fields. Omit a field only where marked optional.
 | `blocked_by` | Required when status is `blocked`: the missing fact or the failing check. |
 | `output` | Optional. The file path, url, or external id this task produced. |
 
-**Resolve conditional needs at intake.** Drop every `needs` entry whose task
-is out of scope for this project, and leave out-of-scope tasks out of the
-file entirely (not as `skipped`). A `needs` pointing at a task that is not
-in the file blocks that task forever.
+**Resolve the task table at intake.** The project file holds concrete names
+only:
+
+- Drop every `needs` entry whose task is out of scope for this project, and
+  leave out-of-scope tasks out of the file entirely (not as `skipped`). A
+  `needs` pointing at a task that is not in the file blocks that task
+  forever.
+- Drop every `uses` entry for a value this project never has: one whose
+  producing task is out of scope (`employer_link` and `employer_short_link`
+  without employer registration), or one whose field-table row scopes it to
+  another kind or format. The complete list for events: `online_platform`
+  in person; `venue`, `address`, and `venue_rules` online;
+  `hiring_employer` outside recruitment and hiring; `partner_logo` with no
+  flyer. Keep every other field, even an empty one that only the request
+  could fill (`cohost`, `venue_rules` in person): it may still arrive.
+- Expand `all facts` to the name of every field in the playbook's Facts
+  table, plus `event_name`, which the copy's headline carries (training:
+  every field in its field table except `public_link`), whether or not it
+  has a value yet. The out-of-scope rule above still drops a value this
+  project never has. Filling an empty one later is a value change, so the
+  copy goes stale.
+
+**Status through the run.**
+
+- `todo` until drafted; `blocked` while a missing fact or a failed
+  connector holds it; `draft` once its draft exists and passes its checks.
+  A task with no private draft (`short-links`) is `draft` once its output
+  is recorded.
+- The review packet sets `review-packet` to `done`. Approval sets every
+  `draft` task to `approved`.
+- Each execute action sets its task to `done` once verified. At handoff,
+  every `approved` task with no execute action (the flyer, the emails, the
+  social post) becomes `done`: its draft is the deliverable. `execute` is
+  `done` at handoff, whether or not actions were skipped; a skipped action
+  leaves its task `approved` or `blocked`, and is named in STATUS.
 
 Project statuses: `intake`, `review`, `executing`, `handoff`, `closed`. The
-`index.md` row mirrors the project status in the same write.
+`index.md` row mirrors the project status (see index.md).
 
 ### Body sections
 
