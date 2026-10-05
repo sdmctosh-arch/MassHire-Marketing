@@ -46,7 +46,9 @@ the build order, and that cost is not invented.
     source gives a location), and this does not block publishing it.
 11. existing-check runs at intake, searches `training` posts and Directorist
     listings by title, and records `none` for each; neither training-post
-    nor directorist-listing runs a search of its own.
+    nor directorist-listing searches for an existing object before creating
+    its own (a count read back after the write, as a check, is not such a
+    search).
 12. `training-category` is matched to the existing term "Healthcare" on
     meaning, and the listing category to "Healthcare Training"; no taxonomy
     term is created in the draft pass.

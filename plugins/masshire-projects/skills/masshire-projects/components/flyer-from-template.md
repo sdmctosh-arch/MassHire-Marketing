@@ -88,7 +88,7 @@ old one is left as is.
 4. Save both files to `flyer/` in the project folder, and present them to the
    operator with the review packet (in Cowork, with SendUserFile).
 5. If the `wordpress-event` draft already exists, add the PNG to it now
-   (see `wordpress-event` step 6).
+   (see `wordpress-event`, Process step 2).
 
 ## Tool facts
 

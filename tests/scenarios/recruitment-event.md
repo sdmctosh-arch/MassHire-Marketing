@@ -42,3 +42,5 @@ Job Listings flyer.
     set or planned anywhere, and no scheduling tool is called.
 11. The emails contain no registration mechanics (no slot lengths, no ticket
     class names).
+12. No task lists `employer_link` or `employer_short_link` in `uses`, and
+    description-copy's `uses` names fields rather than "all facts".

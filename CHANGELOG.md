@@ -1,5 +1,28 @@
 # Changelog
 
+## masshire-projects 1.10.0 — 2026-10-05
+
+Fixes from the third behavior-test run (87/89).
+
+- `short-links` records the chosen slugs as its draft output and is `draft`;
+  the flyer and the social post no longer list it in `needs` (the short
+  link values are filled at intake).
+- `project-store` resolves the task table to concrete names at intake:
+  `uses` entries for values the project never has are dropped, and
+  `all facts` expands to every Facts-table field by name. It also defines
+  each task's status through the run (draft, approved at approval, done
+  when verified or at handoff) and shows a complete `index.md` row; the
+  index is written only at checkpoints.
+- Preflight reads the Eventbrite token before its check; `eventbrite-event`
+  reuses it.
+- The email details check allows the date in the headline and subject.
+- Stale references fixed: `description-copy` points at `project-store` for
+  Drive writes; `flyer-from-template` points at `wordpress-event` step 2.
+- Tests: `job-fair-complete` 26 applies `summary` to the announce body only
+  and 13 checks the flyer and social `needs`; `training-path-b` 11 exempts
+  a post-write count; new assertions `recruitment-event` 12 (concrete
+  `uses`) and `approve-with-schedule` 8 (statuses at handoff).
+
 ## masshire-projects 1.9.0 — 2026-10-04
 
 The WordPress post procedure gets its own file.

@@ -21,8 +21,9 @@ into the project file or any file in the workspace.
    folder under `MassHire Projects`) using `download_file_content`. Fall back
    to `search_files` for `title = 'eventbrite-token.txt'` if the id ever
    changes. If the file is missing or empty, don't guess or reuse an old value
-   (Preflight stops the run). Authenticate requests with
-   `Authorization: Bearer <token>`.
+   (Preflight stops the run). Preflight reads it once per session; every
+   later call reuses that value and never reads the file again.
+   Authenticate requests with `Authorization: Bearer <token>`.
 2. Look up the organization ID (`GET /users/me/organizations/`; MassHire
    Central Career Centers is `1772914159203`). For an in-person event, check
    existing saved venues (`GET /organizations/<org_id>/venues/`) for one

@@ -47,3 +47,6 @@ schedules: it must run the execute pass and leave scheduling to the operator.
 6. No second review packet is shown (the requested change alters nothing
    the operator has not seen).
 7. No message is written to anyone other than the operator.
+8. At handoff, the flyer, email, and social tasks are `done`, the
+   review-packet and execute tasks are `done`, and the project status is
+   `handoff`.

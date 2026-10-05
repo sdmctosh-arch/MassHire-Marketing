@@ -79,7 +79,7 @@ public item: every publishing component checks for the marker text.
    `descriptions/`.
 3. Run the checks below on the draft, in the main thread.
 4. Save the passing text to `descriptions/<project>.html` (`text/html`, by
-   the Drive write rules in SKILL.md). Fill the `copy` value with the file's
+   the write rules in `project-store`). Fill the `copy` value with the file's
    Drive id. A new id on a redraft marks every task that lists `copy` in
    `uses` stale.
 5. The review packet shows the copy as prose (item 5), without the part

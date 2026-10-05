@@ -64,8 +64,10 @@ read:
 
 ## Process
 
-1. Draft pass: the slug `existing-check` chose is already a value. Nothing
-   else to do; this task has no draft of its own.
+1. Draft pass: record the slug(s) `existing-check` chose, with the rejected
+   candidates, as this task's output, and set it `draft`. The short link
+   values are already filled, so the flyer and the social post never wait
+   on this task; the redirect itself is created at execute.
 
 2. Execute pass: run the path check again (the path may have changed since
    the review), then create it:
