@@ -23,6 +23,10 @@ Fixes from the third behavior-test run (87/89).
   flyer again says the page will be updated as employers confirm (lost in
   1.5.0). The Eventbrite questions check covers the cell phone field's
   scope.
+- The out-of-scope `uses` rule lists every event field it drops
+  (`online_platform`, `venue`, `address`, `venue_rules`, `hiring_employer`,
+  `partner_logo`, by kind and format) and keeps request-only fields such as
+  `cohost`, which may still arrive.
 - Stale references fixed: `description-copy` points at `project-store` for
   Drive writes; `flyer-from-template` points at `wordpress-event` step 2.
 - Tests: `job-fair-complete` 26 applies `summary` to the announce body only

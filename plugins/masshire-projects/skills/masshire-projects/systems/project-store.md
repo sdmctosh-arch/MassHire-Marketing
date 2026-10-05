@@ -146,9 +146,12 @@ only:
   forever.
 - Drop every `uses` entry for a value this project never has: one whose
   producing task is out of scope (`employer_link` and `employer_short_link`
-  without employer registration), or one the field table scopes away
-  (`online_platform` for an in-person event; `venue` and `address` for an
-  online one).
+  without employer registration), or one whose field-table row scopes it to
+  another kind or format. The complete list for events: `online_platform`
+  in person; `venue`, `address`, and `venue_rules` online;
+  `hiring_employer` outside recruitment and hiring; `partner_logo` with no
+  flyer. Keep every other field, even an empty one that only the request
+  could fill (`cohost`, `venue_rules` in person): it may still arrive.
 - Expand `all facts` to the name of every field in the playbook's Facts
   table, plus `event_name`, which the copy's headline carries (training:
   every field in its field table except `public_link`), whether or not it

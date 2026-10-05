@@ -39,8 +39,9 @@ default, so the run must ask exactly one question and keep going.
     `careers`, `webinar`, `online`) and contains neither `jobfair` nor
     `hiring`.
 12. No published item or created email draft contains the gap text.
-13. The description-copy task lists in `uses` every fact this project can
-    have, by name, including `event_name` and `end_time` (values an online
-    event never has, such as `venue` and `address`, may be dropped); every
+13. description-copy's `uses` names fields, not "all facts", and includes
+    at least `event_name`, `event_date`, `start_time`, `end_time`,
+    `online_platform`, `audience`, `cost`, `what_to_bring`, and `cohost`;
+    it does not include `venue`, `address`, or `hiring_employer`. Every
     task that takes from the copy lists `copy` in `uses`, so filling the
     end time redrafts the copy and the redraft marks its takers stale.
