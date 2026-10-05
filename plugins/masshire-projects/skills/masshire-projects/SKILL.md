@@ -96,8 +96,10 @@ depend on them; run the rest. Everything else that is blocked or unfinished
 event) stays as it is and goes in the handoff list. Name every skipped action
 and the reason in the report.
 
-Run the playbook's execute list in order. Each action gets one LOG line:
-`Executed: <task> <action>` (the review approval is logged once, as
+Run the playbook's execute list in order. Each numbered step of that list
+is one action and gets one LOG line, naming every object it touched:
+`Executed: <task> <action>`, for example `Executed: short-links create
+/graftonfair, /graftonfairemployer` (the review approval is logged once, as
 `Approved: review packet`). Verify each action with its component's checks
 before the next one. If an action fails, finish the ones that do not depend
 on it, then report. Finish with one message: what was done, the links, and

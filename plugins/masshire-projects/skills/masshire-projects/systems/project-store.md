@@ -150,9 +150,11 @@ only:
   (`online_platform` for an in-person event; `venue` and `address` for an
   online one).
 - Expand `all facts` to the name of every field in the playbook's Facts
-  table (training: every field in its field table except `public_link`),
-  whether or not it has a value yet. Filling an empty one later is a value
-  change, so the copy goes stale.
+  table, plus `event_name`, which the copy's headline carries (training:
+  every field in its field table except `public_link`), whether or not it
+  has a value yet. The out-of-scope rule above still drops a value this
+  project never has. Filling an empty one later is a value change, so the
+  copy goes stale.
 
 **Status through the run.**
 

@@ -16,6 +16,9 @@ Fixes from the third behavior-test run (87/89).
 - Preflight reads the Eventbrite token before its check; `eventbrite-event`
   reuses it.
 - The email details check allows the date in the headline and subject.
+- `all facts` also names `event_name` (the copy's headline carries it); each
+  numbered execute step is one action with one LOG line naming every object
+  it touched.
 - Stale references fixed: `description-copy` points at `project-store` for
   Drive writes; `flyer-from-template` points at `wordpress-event` step 2.
 - Tests: `job-fair-complete` 26 applies `summary` to the announce body only
