@@ -179,9 +179,9 @@ skipping any that repeat a default. The tag list goes in the review packet.
   response.
 - [api] Questions 2–7 present on `Registration` (or every slot ticket) and
   not on `Admission`; 2–6 required and 7 optional; the cell phone field is
-  on and required;
-  the options of questions 3–6 match this file or the reference event
-  exactly.
+  on, required, and scoped like questions 2–7 (read back from
+  `GET /events/<event_id>/canned_questions/`); the options of questions
+  3–6 match this file or the reference event exactly.
 - [api] `confirmation_message` and `instructions` both equal the standard
   text (`GET /events/<event_id>/ticket_buyer_settings/`).
 - [api] Date, time, and venue (or `online_event`) match the values block.

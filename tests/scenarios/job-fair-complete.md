@@ -80,11 +80,12 @@ A complete job fair request. Nothing is missing, so nothing may be asked.
     the new folder's id.
 24. Each email draft is created with a campaign `name` of the form
     `Southbridge Job Fair - 2026-11-12 - Email <n>`.
-25. The copy in `descriptions/` has six parts in this order, each a
-    `data-part` block with no visible heading: headline, summary, details,
-    audience, bring, body.
-26. The announce email's `{{BODY}}`, the flyer `body`, and the WordPress
-    post content all take the copy's `summary` part (the reminder and last
+25. The transcript reports the copy written to `descriptions/` with six
+    parts in this order: headline, summary, details, audience, bring, body
+    (each a `data-part` block; the review packet shows them as prose).
+26. The announce email's `{{BODY}}`, the flyer `body` (followed there by
+    the `audience` part), and the WordPress post content all take the
+    copy's `summary` part (the reminder and last
     call bodies are new one-sentence wording); each email details box is
     the copy's `details` part followed by its `audience` part.
 27. The `copy` value holds the Drive id of the description file, and every

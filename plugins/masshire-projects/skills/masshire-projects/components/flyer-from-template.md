@@ -61,7 +61,8 @@ filling. Never hard-code field names from this table into a call.
      the address. The QR carries the Eventbrite URL.
    - `cta_qr`: the `asset_id` from `flyer-qr`.
    - `when_value`, `location`, `address`: from the values block.
-   - `body`: the copy's `summary` part.
+   - `body`: the copy's `summary` part, then its `audience` part (for a
+     job fair, that carries "updated as employers confirm").
    - Job Listings: `event_type`, `company`, `job_name` from the event name;
      the position rows from `positions`; `partner_logo` from the Canva asset
      lookup. Send an empty string for every field of an unused position row,

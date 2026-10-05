@@ -19,6 +19,10 @@ Fixes from the third behavior-test run (87/89).
 - `all facts` also names `event_name` (the copy's headline carries it); each
   numbered execute step is one action with one LOG line naming every object
   it touched.
+- The flyer `body` is the copy's `summary` then `audience`, so a job fair
+  flyer again says the page will be updated as employers confirm (lost in
+  1.5.0). The Eventbrite questions check covers the cell phone field's
+  scope.
 - Stale references fixed: `description-copy` points at `project-store` for
   Drive writes; `flyer-from-template` points at `wordpress-event` step 2.
 - Tests: `job-fair-complete` 26 applies `summary` to the announce body only
